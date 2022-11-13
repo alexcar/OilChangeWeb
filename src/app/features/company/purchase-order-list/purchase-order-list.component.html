@@ -1,0 +1,77 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+  <div fxFlex="95%">
+
+    <mat-card>
+      <mat-card-title>
+        Pedidos de Compra
+      </mat-card-title>
+      <mat-card-content>
+        <mat-form-field appearance="standard">
+          <mat-label>Filtro</mat-label>
+          <input matInput (keyup)="applyFilter($event)" #input>
+        </mat-form-field>
+
+        <table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="customerName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cliente </th>
+            <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="licencePlate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Placa </th>
+            <td mat-cell *matCellDef="let element"> {{element.licencePlate}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="vehicleModel">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Modelo </th>
+            <td mat-cell *matCellDef="let element"> {{element.vehicleModel}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="vehicle">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Veículo </th>
+            <td mat-cell *matCellDef="let element"> {{element.vehicle}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="appointmentDateTime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Agendamento </th>
+            <td mat-cell *matCellDef="let element"> {{element.appointmentDateTime}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="startServiceExecution">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Check-in </th>
+            <td mat-cell *matCellDef="let element"> {{element.startServiceExecution}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="endServiceExecution">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Check-out </th>
+            <td mat-cell *matCellDef="let element"> {{element.endServiceExecution}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="detalhes">
+            <th mat-header-cell *matHeaderCellDef> Detalhes </th>
+            <td mat-cell *matCellDef="let element">
+              <button (click)="purchaseOrderDetail()" mat-icon-button color="primary">
+                <mat-icon>search</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="7">
+              Não existe cotação de preço cadastrada.
+            </td>
+          </tr>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+          </mat-paginator>
+
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</div>

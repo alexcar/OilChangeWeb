@@ -1,0 +1,69 @@
+<div fxlayout="row" fxLayoutAlign="center">
+  <mat-card style="width: 80%; margin: 10px;">
+    <mat-card-title>Veículo</mat-card-title>
+    <mat-card-content>
+      <div fxLayout="row" fxLayoutGap="10">
+        <div fxFlex="50%">
+          <mat-form-field class="mat-form-field-50" appearance="fill">
+            <mat-label>Marca</mat-label>
+            <mat-select>
+              <mat-option value="1">VW</mat-option>
+              <mat-option value="2">Fiat</mat-option>
+              <mat-option value="3">Ford</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50%">
+          <mat-form-field class="mat-form-field-50" appearance="fill">
+            <mat-label>Modelo</mat-label>
+            <mat-select>
+              <mat-option value="1">VW</mat-option>
+              <mat-option value="2">Fiat</mat-option>
+              <mat-option value="3">Ford</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10">
+        <div fxFlex="50%">
+          <mat-form-field class="mat-form-field-50" appearance="fill">
+            <mat-label>Ano</mat-label>
+            <mat-select>
+              <mat-option value="1">1973</mat-option>
+              <mat-option value="2">1980</mat-option>
+              <mat-option value="3">2017</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50%">
+          <mat-form-field class="mat-form-field-50" appearance="fill">
+            <mat-label>Combustível</mat-label>
+            <mat-select>
+              <mat-option value="1">Flex</mat-option>
+              <mat-option value="2">Gasolina</mat-option>
+              <mat-option value="3">Alcool</mat-option>
+              <mat-option value="4">Diesel</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10">
+        <div fxFlex="50%">
+          <mat-form-field class="mat-form-field-50" appearance="fill">
+            <mat-label>Placa</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50%" fxLayoutAlign="none center">
+          <mat-checkbox [(ngModel)]="checked" >Ativo</mat-checkbox>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div fxlayout="row" fxLayoutAlign="end">
+        <button mat-raised-button (click)="createVehicle()" color="primary">Enviar</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
+

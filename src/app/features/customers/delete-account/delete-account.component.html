@@ -1,0 +1,51 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+  <div fxFlex="95%">
+    <mat-card>
+      <mat-card-title>Excluir Conta</mat-card-title>
+      <mat-card-subtitle>
+        Depois de excluir a sua conta, não há como voltar atrás. Por favor, tenha certeza.
+      </mat-card-subtitle>
+      <mat-card-content>
+        <div style="padding: 5px;" fxLayout="row">
+          <div fxFlex>
+            <button mat-raised-button (click)="deleteAccount()" color="primary">Excluir minha conta</button>
+          </div>
+        </div>
+        <div *ngIf="isDeleteAccount">
+          <div style="padding: 10px;" fxLayout="row">
+            <div fxFlex>
+              Essa ação não poderá ser desfeita. isso excluirá permanentemente:
+              <ul>
+                <li>Seus dados cadastrais</li>
+                <li>Seus veículos cadastrados</li>
+                <li>Seus serviços executados</li>
+                <li>Suas cotações de preço</li>
+                <li>Seus relatórios</li>
+              </ul>
+            </div>
+          </div>
+          <div style="padding: 10px;" fxLayout="row">
+            <div fxFlex>
+              Por favor digite "José da Silva" para confirmar.
+            </div>
+          </div>
+          <div style="padding: 10px;" fxLayout="row">
+            <div fxFlex>
+              <mat-form-field appearance="fill" style="width: 350px;">
+                <input matInput (keyup)="confirmAccountDeletion($event)" #input>
+              </mat-form-field>
+            </div>
+          </div>
+          <div style="padding: 10px;" fxLayout="row">
+            <div fxFlex>
+              <button mat-raised-button
+                [disabled]="!isConfirmDeleteAccount"
+                (click)="permanentlyDeleteAccount()"
+                color="primary">Eu entendo as consequências, exclua minha conta</button>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

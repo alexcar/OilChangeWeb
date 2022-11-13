@@ -1,0 +1,79 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+  <div fxFlex="95%">
+
+    <mat-card>
+      <mat-card-title>
+        Veículos
+      </mat-card-title>
+      <mat-card-content>
+        <div fxLayout="row" fxLayoutAlign="space-between end">
+          <div>
+            <button mat-raised-button (click)="createVehicle()" color="primary">Novo</button>
+          </div>
+          <div>
+            <mat-form-field style="width: 100px;" appearance="standard">
+              <mat-label>Filtro</mat-label>
+              <input matInput (keyup)="applyFilter($event)" #input>
+            </mat-form-field>
+          </div>
+        </div>
+        <table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="model">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Modelo </th>
+            <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="year">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Ano </th>
+            <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="fuel">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Combustível </th>
+            <td mat-cell *matCellDef="let element"> {{element.fuel}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="licencePlate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Placa </th>
+            <td mat-cell *matCellDef="let element"> {{element.licencePlate}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="detalhes">
+            <th mat-header-cell *matHeaderCellDef> Detalhes </th>
+            <td mat-cell *matCellDef="let element">
+              <button (click)="vehicleDetails()" mat-icon-button color="primary">
+                <mat-icon>search</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="7">
+              Não existe cotação de preço cadastrada.
+            </td>
+          </tr>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+          </mat-paginator>
+
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</div>
+

@@ -1,0 +1,75 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+  <div fxFlex="80%">
+    <mat-card>
+      <mat-card-title>Cotação de Preço</mat-card-title>
+      <mat-card-content>
+        <div fxLayout="row">
+          <div style="margin-right: 10px;">
+            <mat-form-field class="mat-form-field-100" appearance="fill">
+              <mat-label>Veículo</mat-label>
+              <mat-select>
+                <mat-option value="1">SO-5180</mat-option>
+                <mat-option value="2">FMS-9676</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="mat-form-field-300px" appearance="fill">
+              <input matInput readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div  fxLayout="row">
+          <div>Serviços:</div>
+        </div>
+        <div fxLayout="row">
+          <div>
+            <section class="ckeckbox-section">
+              <mat-checkbox class="ckeckbox-margin">Troca de Oleo</mat-checkbox>
+              <mat-checkbox class="ckeckbox-margin">Troca de Filtro de Óleo</mat-checkbox>
+            </section>
+          </div>
+        </div>
+        <div class="container" fxLayout="row">
+          <div>
+            Informe uma data e hora para executar o(s) serviço(s)
+          </div>
+        </div>
+        <div class="container" fxLayout="row">
+          <div style="margin-right: 10px;">
+            <mat-form-field appearance="fill">
+              <mat-label>Escolha uma data</mat-label>
+              <input matInput [matDatepicker]="picker">
+              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="mat-form-field-100" appearance="fill">
+              <mat-label>Escolha um horário</mat-label>
+              <mat-select>
+                <mat-option value="1">09:00</mat-option>
+                <mat-option value="2">10:00</mat-option>
+                <mat-option value="2">11:00</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="container" fxLayout="row">
+          <div>
+            <mat-form-field class="mat-form-field-500px" appearance="fill">
+              <mat-label>Deixe um comentário</mat-label>
+              <textarea matInput></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <div fxlayout="row" fxLayoutAlign="end">
+          <button mat-raised-button (click)="sendPriceQuote()" color="primary">Enviar</button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

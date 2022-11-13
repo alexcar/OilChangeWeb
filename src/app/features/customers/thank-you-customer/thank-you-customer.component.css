@@ -1,0 +1,14 @@
+.header {
+  background-color: rgb(59, 119, 240);
+  color: white;
+  font-family: cursive;
+  padding: 10px;
+}
+
+div a {
+  color: white; text-decoration: none;
+}
+
+.font-size-30 {
+  font-size: 30px;
+}

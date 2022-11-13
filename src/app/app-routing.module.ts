@@ -1,12 +1,17 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './core/guards/auth.guard';
+import { NgModule } from '@angular/core';
 
 const appRoutes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule),
+  },
+  {
+    path: '',
+    loadChildren: () => import('./features/frontPage/frontpage.module').then(m => m.FrontPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'dashboard',
@@ -43,9 +48,13 @@ const appRoutes: Routes = [
     loadChildren: () => import('./features/about/about.module').then(m => m.AboutModule),
     canActivate: [AuthGuard]
   },
+  { path: 'company',
+    loadChildren: () => import('./features/company/company.module').then(m => m.CompanyModule),
+    canActivate: [AuthGuard]
+  },
   {
     path: '**',
-    redirectTo: 'dashboard',
+    redirectTo: '',
     pathMatch: 'full'
   }
 ];

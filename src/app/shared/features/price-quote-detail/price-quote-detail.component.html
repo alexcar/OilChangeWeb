@@ -1,0 +1,171 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+  <div fxFlex="95%">
+
+    <mat-card>
+      <mat-card-title>
+        Cotação de preço - Detalhes
+      </mat-card-title>
+      <mat-card-content>
+        <div fxLayout="row" fxlayoutAlign="space-between none">
+          <div fxFlex>
+            <mat-form-field appearance="fill">
+              <mat-label>Cotação para</mat-label>
+              <input matInput value="José da Silva" readonly>
+            </mat-form-field>
+          </div>
+          <div fxFlex>
+            <mat-form-field appearance="fill">
+              <mat-label>Cotação número</mat-label>
+              <input matInput value="001" readonly>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxLayout="row" fxlayoutAlign="space-between none">
+          <div fxFlex>
+            <mat-form-field appearance="fill">
+              <mat-label>Serviço</mat-label>
+              <input matInput value="Troca de óleo e filtro" readonly>
+            </mat-form-field>
+          </div>
+          <div fxFlex>
+            <mat-form-field appearance="fill">
+              <mat-label>Data</mat-label>
+              <input matInput value="11/11/2022" readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="row" fxlayoutAlign="space-between none">
+          <div fxFlex>
+            <mat-form-field appearance="fill">
+              <mat-label>Veículo</mat-label>
+              <input matInput value="FMS-9676 Ford New KA" readonly>
+            </mat-form-field>
+          </div>
+          <div fxFlex>
+            <mat-form-field appearance="fill">
+              <mat-label>Data expiração</mat-label>
+              <input matInput value="15/11/2022" readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxlayout="row">
+          <div>
+            <mat-form-field appearance="fill" style="width: 350px;">
+              <mat-label>Data e hora a ser realizado o serviço</mat-label>
+              <input matInput value="segunda-feira, 10 de novembro de 2022 às 16:00h" readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxlayout="row">
+          <div>
+            <mat-form-field appearance="fill" style="width: 350px;">
+              <mat-label>Empresa responsável pela execução do serviço</mat-label>
+              <input matInput value="Empresa XPTO III" readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="row" fxlayoutAlign="space-between none">
+          <div fxFlex>
+            <mat-form-field appearance="fill">
+              <mat-label>Endereço a ser realizado o serviço</mat-label>
+              <input matInput value="Rua major Villas Boas, 300" readonly>
+            </mat-form-field>
+          </div>
+          <div fxFlex>
+            <mat-form-field appearance="fill">
+              <mat-label>WhatsApp</mat-label>
+              <input matInput value="11 985471249" readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="row" fxlayoutAlign="space-between none">
+          <div fxFlex>
+            <mat-form-field appearance="fill">
+              <mat-label>Bairro</mat-label>
+              <input matInput value="Centro" readonly>
+            </mat-form-field>
+          </div>
+          <div fxFlex>
+            <mat-form-field appearance="fill">
+              <mat-label>Município</mat-label>
+              <input matInput value="Santa isabel" readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="row" fxlayoutAlign="space-between none">
+          <div fxFlex>
+            <mat-form-field appearance="fill">
+              <mat-label>Estado</mat-label>
+              <input matInput value="São Paulo" readonly>
+            </mat-form-field>
+          </div>
+          <div fxFlex>
+            <mat-form-field appearance="fill">
+              <mat-label>CEP</mat-label>
+              <input matInput value="07500-000" readonly>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxLayout="row">
+          <table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> Item </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="productName">
+              <th mat-header-cell *matHeaderCellDef> Produto </th>
+              <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="manufacturerName">
+              <th mat-header-cell *matHeaderCellDef> Fabricante </th>
+              <td mat-cell *matCellDef="let element"> {{element.manufacturerName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="quantity">
+              <th mat-header-cell *matHeaderCellDef> Quantidade </th>
+              <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+            </ng-container>
+            <ng-container matColumnDef="unitPrice">
+              <th mat-header-cell *matHeaderCellDef> Preço Unitário </th>
+              <td mat-cell *matCellDef="let element"> {{element.unitPrice}} </td>
+            </ng-container>
+            <ng-container matColumnDef="subtotal">
+              <th mat-header-cell *matHeaderCellDef> Sub-Total </th>
+              <td mat-cell *matCellDef="let element"> {{element.subtotal}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+
+        <div fxlayout="row">
+          <div>
+            <mat-form-field appearance="fill" style="width: 350px;">
+              <mat-label>Valor Total</mat-label>
+              <input matInput value="355,99" readonly>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxlayout="row">
+          <div>
+            <mat-form-field appearance="fill" style="width: 350px;">
+              <mat-label>Forma de pagamento</mat-label>
+              <input matInput value="Cartão de crédito (Mastercard)" readonly>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <mat-card-actions>
+          <div fxlayout="row" fxLayoutAlign="end">
+            <button mat-raised-button (click)="returnQuoteList()" color="primary">Voltar</button>
+          </div>
+        </mat-card-actions>
+
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</div>
