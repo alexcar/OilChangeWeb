@@ -84,7 +84,7 @@ export class PriceQuoteListComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.titleService.setTitle('angular-material-template - Customers');
     this.logger.log('Cotações de preço carregada');
-    this.notificationService.openSnackBar('Cotações de preço carregada');
+    this.notificationService.openSnackBar('Lista de cotações de preço carregada');
   }
 
   ngAfterViewInit() {
@@ -95,6 +95,10 @@ export class PriceQuoteListComponent implements OnInit, AfterViewInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  createPriceQuote(): void {
+    this.router.navigateByUrl("/customers/sendPriceQuote");
   }
 
   priceQuoteDetail(): void {

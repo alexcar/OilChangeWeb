@@ -8,7 +8,7 @@
 6. `npm install --save ngx-logger`
 7. `ng add @angular-eslint/schematics`
 8. `npm install eslint-plugin-import eslint-plugin-jsdoc eslint-plugin-prefer-arrow`
-9. Update src/styles.css
+9. `Update src/styles.css`
 
 ## Links
 
@@ -19,6 +19,7 @@
 <https://github.com/angular-eslint/angular-eslint>
 <https://www.angularjswiki.com/flexlayout/>
 <https://livrosdomaujor.com.br/>
+<https://www.johnpapa.net/how-i-write-online-articles/>
 
 ## Rascunho
 

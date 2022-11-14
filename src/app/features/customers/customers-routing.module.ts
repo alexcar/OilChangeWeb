@@ -23,7 +23,8 @@ const routes: Routes = [
       { path: "priceQuoteDetail", component: PriceQuoteDetailComponent },
       { path: "deleteAccount", component: DeleteAccountComponent },
       { path: "sendPriceQuote", component: SendPriceQuoteComponent },
-      { path: "thankYouPriceQuote", component: TyPriceQuoteComponent }
+      { path: "thankYouPriceQuote", component: TyPriceQuoteComponent },
+      { path: "account", component: CustomerRegistrationComponent }
     ]
   },
   { path: "registration", component: CustomerRegistrationComponent },

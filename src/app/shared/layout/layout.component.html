@@ -9,13 +9,13 @@
 
     <a class="navbar-brand" [routerLink]="['/']" matTooltip="Home">
       <h1>
-        angular-material-template v beta
+        Troca Óleo
       </h1>
     </a>
 
     <span class="navbar-spacer"></span>
 
-    <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
+    <!-- <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
       <mat-icon matBadge="2" matBadgeColor="accent">notifications</mat-icon>
     </button>
     <mat-menu #notificationMenu="matMenu" xPosition="before" yPosition="above" [overlapTrigger]="false">
@@ -27,9 +27,7 @@
         <span>You have a new message</span>
       </a>
 
-    </mat-menu>
-
-
+    </mat-menu> -->
 
     <button mat-button [matMenuTriggerFor]="userMenu">
       <mat-icon>person</mat-icon>
@@ -39,10 +37,10 @@
     </button>
     <mat-menu #userMenu="matMenu" xPosition="before" yPosition="above" [overlapTrigger]="false">
 
-      <a mat-menu-item [routerLink]="['/account/profile']">
+      <!-- <a mat-menu-item [routerLink]="['/account/profile']">
         <mat-icon>person</mat-icon>
         <span>Account</span>
-      </a>
+      </a> -->
 
       <a mat-menu-item [routerLink]="['/auth/login']">
         <mat-icon>exit_to_app</mat-icon>
@@ -59,31 +57,48 @@
       [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" class="sidenav">
 
       <mat-nav-list>
-        <h3 mat-subheader>Home</h3>
+        <!-- <h3 mat-subheader *ngIf="!isAdmin">Cliente</h3>
+        <h3 mat-subheader *ngIf="isAdmin">Administrador</h3> -->
+        <h3 mat-subheader>{{ isAdmin ? 'Adminitrador' : 'Cliente' }}</h3>
 
-        <a mat-list-item [routerLink]="['/dashboard']" routerLinkActive="active">
+        <a *ngIf="!isAdmin" mat-list-item [routerLink]="['/customers']" routerLinkActive="active">
           <mat-icon mat-list-icon>
             dashboard
           </mat-icon>
-          <p mat-line> Dashboard </p>
+          <p mat-line> Cotações de Preço </p>
         </a>
 
-        <a mat-list-item [routerLink]="['/customers']" routerLinkActive="active">
+        <a *ngIf="!isAdmin" mat-list-item [routerLink]="['/customers/vehicleList']">
           <mat-icon mat-list-icon>
             business
           </mat-icon>
-          <p mat-line> Customers </p>
+          <p mat-line> Veículos </p>
         </a>
-        <a mat-list-item [routerLink]="['/users']" routerLinkActive="active">
+
+        <a *ngIf="!isAdmin" mat-list-item [routerLink]="['/customers/account']">
+          <mat-icon mat-list-icon>person</mat-icon>
+          <p mat-line> Minha conta </p>
+        </a>
+
+        <a *ngIf="!isAdmin" mat-list-item [routerLink]="['/customers/deleteAccount']">
           <mat-icon mat-list-icon>
             people
           </mat-icon>
-          <p mat-line> Users </p>
+          <p mat-line> Excluir minha conta </p>
         </a>
 
-        <a mat-list-item [routerLink]="['/account/profile']">
-          <mat-icon mat-list-icon>person</mat-icon>
-          <p mat-line> Account </p>
+        <a *ngIf="isAdmin" mat-list-item [routerLink]="['/company']" routerLinkActive="active">
+          <mat-icon mat-list-icon>
+            dashboard
+          </mat-icon>
+          <p mat-line> Pedidos </p>
+        </a>
+
+        <a *ngIf="isAdmin" mat-list-item [routerLink]="['/company/customers']">
+          <mat-icon mat-list-icon>
+            people
+          </mat-icon>
+          <p mat-line> Clientes </p>
         </a>
 
         <a mat-list-item [routerLink]="['/auth/login']">
@@ -93,7 +108,7 @@
 
         <mat-divider></mat-divider>
 
-        <h3 mat-subheader>Resources</h3>
+        <!-- <h3 mat-subheader>Resources</h3>
 
         <a mat-list-item [routerLink]="['/icons']" routerLinkActive="active">
           <mat-icon mat-list-icon>
@@ -113,13 +128,13 @@
             link
           </mat-icon>
           <p mat-line> Material Components </p>
-        </a>
+        </a> -->
 
         <a id="push-bottom" mat-list-item [routerLink]="['/about']" routerLinkActive="active">
           <mat-icon mat-list-icon>
             info_outline
           </mat-icon>
-          <p mat-line> About </p>
+          <p mat-line> Sobre </p>
         </a>
       </mat-nav-list>
 
@@ -133,7 +148,6 @@
         </mat-progress-bar>
         <!-- <mat-spinner class="spinner" [diameter]="50" *ngIf="showSpinner"></mat-spinner> -->
       </div>
-
 
       <router-outlet></router-outlet>
 

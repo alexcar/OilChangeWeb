@@ -6,10 +6,17 @@
         Cotações de Preço
       </mat-card-title>
       <mat-card-content>
-        <mat-form-field appearance="standard">
-          <mat-label>Filtro</mat-label>
-          <input matInput (keyup)="applyFilter($event)" #input>
-        </mat-form-field>
+        <div fxLayout="row" fxLayoutAlign="space-between end">
+          <div>
+            <button mat-raised-button (click)="createPriceQuote()" color="primary">Novo</button>
+          </div>
+          <div>
+            <mat-form-field style="width: 100px;" appearance="standard">
+              <mat-label>Filtro</mat-label>
+              <input matInput (keyup)="applyFilter($event)" #input>
+            </mat-form-field>
+          </div>
+        </div>
 
         <table mat-table [dataSource]="dataSource" matSort>
           <ng-container matColumnDef="number">

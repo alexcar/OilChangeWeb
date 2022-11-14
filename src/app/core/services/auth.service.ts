@@ -48,12 +48,12 @@ export class AuthenticationService {
         // return JSON.parse(this.localStorage.getItem('currentUser'));
         return {
             token: 'aisdnaksjdn,axmnczm',
-            isAdmin: true,
+            isAdmin: false,
             email: 'john.doe@gmail.com',
             id: '12312323232',
             alias: 'john.doe@gmail.com'.split('@')[0],
             expiration: moment().add(1, 'days').toDate(),
-            fullName: 'John Doe'
+            fullName: 'José da Silva'
         };
     }
 

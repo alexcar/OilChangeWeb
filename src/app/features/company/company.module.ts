@@ -6,11 +6,13 @@ import { PtBrMatPaginatorIntl } from 'src/app/shared/paginator/portuguese-pagina
 import { PurchaseOrderListComponent } from './purchase-order-list/purchase-order-list.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PurchaseOrderComponent } from './purchase-order/purchase-order.component';
+import { CustomerListComponent } from './customer-list/customer-list.component';
 
 @NgModule({
   declarations: [
     PurchaseOrderListComponent,
-    PurchaseOrderComponent
+    PurchaseOrderComponent,
+    CustomerListComponent
   ],
   imports: [
     CommonModule,

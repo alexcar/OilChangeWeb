@@ -4,6 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { PriceQuoteItem } from 'src/app/shared/models/price-quote-item.model';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { NGXLogger } from 'ngx-logger';
 
 const ELEMENT_DATA: PriceQuoteItem[] = [
   { id: 1, productName: "Óleo sintético W40", manufacturerName: "Lubrax", quantity: 3, unitPrice: 100.00, subtotal: 300.00 },
@@ -19,10 +21,16 @@ export class PurchaseOrderComponent implements OnInit {
   displayedColumns: string[] = ['id', 'productName', 'manufacturerName', 'quantity', 'unitPrice', 'subtotal'];
   dataSource = new MatTableDataSource<PriceQuoteItem>(ELEMENT_DATA);
 
-  constructor(private router: Router, private notificationService: NotificationService,) { }
+  constructor(
+    private router: Router,
+    private notificationService: NotificationService,
+    private titleService: Title,
+    private logger: NGXLogger) { }
 
   ngOnInit(): void {
-    const foo = "foo";
+    this.titleService.setTitle('Troca Óleo - Pedido de Compra');
+    this.logger.log('Pedido de Compra carregado');
+    this.notificationService.openSnackBar('Pedido de Compra carregado');
   }
 
   updatePurchaseOrder(): void {
