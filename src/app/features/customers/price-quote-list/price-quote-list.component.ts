@@ -12,51 +12,51 @@ import { Title } from '@angular/platform-browser';
 const ELEMENT_DATA: PriceQuote[] =  [
   {
     number: "001", companyName: "Troca Óleo", sendDate: "01/11/2022", expirationDate: "15/11/2022",
-    serviceName: "Troca de Óleo", vehicle: "Fusca", amount: "175,00", status: "Em Análise"
+    serviceName: "Troca de Óleo", vehicle: "Fusca", amount: "175,00", status: "Enviada"
   },
   {
     number: "002", companyName: "Troca Óleo", sendDate: "05/11/2022", expirationDate: "15/11/2022",
-    serviceName: "Troca de Óleo", vehicle: "Passat", amount: "175,00", status: "Em Análise"
+    serviceName: "Troca de Óleo", vehicle: "Passat", amount: "175,00", status: "Respondida"
   },
   {
     number: "003", companyName: "Troca Óleo", sendDate: "01/11/2022", expirationDate: "15/11/2022",
-    serviceName: "Troca de Óleo", vehicle: "Fiat Uno", amount: "175,00", status: "Aprovada"
+    serviceName: "Troca de Óleo", vehicle: "Fiat Uno", amount: "175,00", status: "Agendamento"
   },
   {
     number: "004", companyName: "Troca Óleo", sendDate: "01/11/2022", expirationDate: "15/11/2022",
-    serviceName: "Troca de Óleo", vehicle: "Novo Ka", amount: "175,00", status: "Em Análise"
+    serviceName: "Troca de Óleo", vehicle: "Novo Ka", amount: "175,00", status: "Executando"
   },
   {
     number: "005", companyName: "Troca Óleo", sendDate: "05/11/2022", expirationDate: "15/11/2022",
-    serviceName: "Troca de Óleo", vehicle: "Voyagem", amount: "175,00", status: "Em Análise"
+    serviceName: "Troca de Óleo", vehicle: "Voyagem", amount: "175,00", status: "Fechada"
   },
   {
     number: "006", companyName: "Troca Óleo", sendDate: "01/11/2022", expirationDate: "15/11/2022",
-    serviceName: "Troca de Óleo", vehicle: "Corcel", amount: "175,00", status: "Aprovada"
+    serviceName: "Troca de Óleo", vehicle: "Corcel", amount: "175,00", status: "Cancelada"
   },
   {
     number: "007", companyName: "Troca Óleo", sendDate: "01/11/2022", expirationDate: "15/11/2022",
-    serviceName: "Troca de Óleo", vehicle: "Chevette", amount: "175,00", status: "Em Análise"
+    serviceName: "Troca de Óleo", vehicle: "Chevette", amount: "175,00", status: "Enviada"
   },
   {
     number: "008", companyName: "Troca Óleo", sendDate: "05/11/2022", expirationDate: "15/11/2022",
-    serviceName: "Troca de Óleo", vehicle: "Opala", amount: "175,00", status: "Em Análise"
+    serviceName: "Troca de Óleo", vehicle: "Opala", amount: "175,00", status: "Enviada"
   },
   {
     number: "009", companyName: "Troca Óleo", sendDate: "01/11/2022", expirationDate: "15/11/2022",
-    serviceName: "Troca de Óleo", vehicle: "Bugre", amount: "175,00", status: "Aprovada"
+    serviceName: "Troca de Óleo", vehicle: "Bugre", amount: "175,00", status: "Enviada"
   },
   {
     number: "010", companyName: "Troca Óleo", sendDate: "01/11/2022", expirationDate: "15/11/2022",
-    serviceName: "Troca de Óleo", vehicle: "Dakota", amount: "175,00", status: "Em Análise"
+    serviceName: "Troca de Óleo", vehicle: "Dakota", amount: "175,00", status: "Enviada"
   },
   {
     number: "011", companyName: "Troca Óleo", sendDate: "05/11/2022", expirationDate: "15/11/2022",
-    serviceName: "Troca de Óleo", vehicle: "Land Rover", amount: "175,00", status: "Em Análise"
+    serviceName: "Troca de Óleo", vehicle: "Land Rover", amount: "175,00", status: "Enviada"
   },
   {
     number: "012", companyName: "Troca Óleo", sendDate: "01/11/2022", expirationDate: "15/11/2022",
-    serviceName: "Troca de Óleo", vehicle: "Onix", amount: "175,00", status: "Aprovada"
+    serviceName: "Troca de Óleo", vehicle: "Onix", amount: "175,00", status: "Enviada"
   }
 ];
 
@@ -82,7 +82,7 @@ export class PriceQuoteListComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle('angular-material-template - Customers');
+    this.titleService.setTitle('Troca Óleo - Cotações de Preço');
     this.logger.log('Cotações de preço carregada');
     this.notificationService.openSnackBar('Lista de cotações de preço carregada');
   }

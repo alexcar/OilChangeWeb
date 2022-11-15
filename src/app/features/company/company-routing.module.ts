@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 
+import { CustomerAccountComponent } from '../customers/customer-account/customer-account.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
-import { CustomerRegistrationComponent } from 'src/app/shared/features/customer-registration/customer-registration.component';
 import { LayoutComponent } from 'src/app/shared/layout/layout.component';
 import { NgModule } from '@angular/core';
 import { PurchaseOrderComponent } from './purchase-order/purchase-order.component';
@@ -13,7 +13,7 @@ const routes: Routes = [
       { path: '', component: PurchaseOrderListComponent },
       { path: "purchaseOrderDetail", component: PurchaseOrderComponent },
       { path: "customers", component: CustomerListComponent },
-      { path: "customerDetail", component: CustomerRegistrationComponent }
+      { path: "customerDetail", component: CustomerAccountComponent }
     ]
   }
 ];

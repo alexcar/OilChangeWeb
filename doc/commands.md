@@ -20,6 +20,9 @@
 <https://www.angularjswiki.com/flexlayout/>
 <https://livrosdomaujor.com.br/>
 <https://www.johnpapa.net/how-i-write-online-articles/>
+<https://realfavicongenerator.net/>
+<https://fonts.google.com/icons>
+<https://tburleson-layouts-demos.firebaseapp.com/#/docs>
 
 ## Rascunho
 

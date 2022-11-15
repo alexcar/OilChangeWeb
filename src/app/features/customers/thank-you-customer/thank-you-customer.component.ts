@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Title } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-thank-you-customer',
   templateUrl: './thank-you-customer.component.html',
@@ -7,10 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThankYouCustomerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private titleService: Title) { }
 
   ngOnInit(): void {
-    const foo = "foo";
+    this.titleService.setTitle('Troca Óleo - Primeiro Passo');
   }
 
 }

@@ -3,19 +3,19 @@
 
     <mat-card>
       <mat-card-title>
-        Pedido de Compra - Detalhes
+        Cotação de preço - Detalhes
       </mat-card-title>
       <mat-card-content>
         <div fxLayout="row" fxlayoutAlign="space-between none">
           <div fxFlex>
             <mat-form-field appearance="fill">
-              <mat-label>Pedido de</mat-label>
+              <mat-label>Cotação para</mat-label>
               <input matInput value="José da Silva" readonly>
             </mat-form-field>
           </div>
           <div fxFlex>
             <mat-form-field appearance="fill">
-              <mat-label>Pedido número</mat-label>
+              <mat-label>Cotação número</mat-label>
               <input matInput value="001" readonly>
             </mat-form-field>
           </div>
@@ -57,6 +57,57 @@
             </mat-form-field>
           </div>
         </div>
+        <div fxlayout="row">
+          <div>
+            <mat-form-field appearance="fill" style="width: 350px;">
+              <mat-label>Empresa responsável pela execução do serviço</mat-label>
+              <input matInput value="Empresa XPTO III" readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="row" fxlayoutAlign="space-between none">
+          <div fxFlex>
+            <mat-form-field appearance="fill">
+              <mat-label>Endereço a ser realizado o serviço</mat-label>
+              <input matInput value="Rua major Villas Boas, 300" readonly>
+            </mat-form-field>
+          </div>
+          <div fxFlex>
+            <mat-form-field appearance="fill">
+              <mat-label>WhatsApp</mat-label>
+              <input matInput value="11 985471249" readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="row" fxlayoutAlign="space-between none">
+          <div fxFlex>
+            <mat-form-field appearance="fill">
+              <mat-label>Bairro</mat-label>
+              <input matInput value="Centro" readonly>
+            </mat-form-field>
+          </div>
+          <div fxFlex>
+            <mat-form-field appearance="fill">
+              <mat-label>Município</mat-label>
+              <input matInput value="Santa isabel" readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="row" fxlayoutAlign="space-between none">
+          <div fxFlex>
+            <mat-form-field appearance="fill">
+              <mat-label>Estado</mat-label>
+              <input matInput value="São Paulo" readonly>
+            </mat-form-field>
+          </div>
+          <div fxFlex>
+            <mat-form-field appearance="fill">
+              <mat-label>CEP</mat-label>
+              <input matInput value="07500-000" readonly>
+            </mat-form-field>
+          </div>
+        </div>
+
         <div fxLayout="row">
           <table mat-table [dataSource]="dataSource">
             <ng-container matColumnDef="id">
@@ -107,40 +158,10 @@
           </div>
         </div>
 
-        <div fxLayout="row">
-          <div style="margin-right: 10px;">
-            <mat-form-field class="mat-form-field-100" appearance="fill">
-              <mat-label>Acão</mat-label>
-              <mat-select>
-                <mat-option value="1">Realizar check-in</mat-option>
-                <mat-option value="2">Realizar check-out</mat-option>
-                <mat-option value="2">Cancelar</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div>
-            <mat-form-field class="mat-form-field-100" appearance="fill">
-              <mat-label>Motivo</mat-label>
-              <mat-select>
-                <mat-option value="1">Cancelado pelo cliente</mat-option>
-                <mat-option value="2">Cancelado pela empresa</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="container" fxLayout="row">
-          <div>
-            <mat-form-field class="mat-form-field-500px" appearance="fill">
-              <mat-label>Observações</mat-label>
-              <textarea matInput></textarea>
-            </mat-form-field>
-          </div>
-        </div>
         <mat-card-actions>
           <div fxlayout="row" fxLayoutAlign="end">
-            <button mat-raised-button (click)="updatePurchaseOrder()" color="primary">Enviar (check-in / check-out / cancelar)</button>
-            <button mat-raised-button (click)="updatePurchaseOrder()" color="primary">Responder</button>
-            <button mat-raised-button (click)="returnPurchaseOrderList()" color="primary">Voltar</button>
+            <button mat-raised-button (click)="returnQuoteList()" color="primary">Realizar Agendamento</button>
+            <button mat-raised-button (click)="returnQuoteList()" color="primary">Voltar</button>
           </div>
         </mat-card-actions>
 

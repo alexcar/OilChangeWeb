@@ -62,3 +62,19 @@ a.mat-list-item.active {
   position: absolute;
   bottom: 0;
 }
+
+.slogan {
+  font-size: 8px;
+}
+
+.article {
+  position: relative;
+  min-height: 100vh;
+}
+
+.div1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}

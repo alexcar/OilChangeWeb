@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { NGXLogger } from 'ngx-logger';
 import { NotificationService } from 'src/app/core/services/notification.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-delete-account',
@@ -14,9 +15,13 @@ export class DeleteAccountComponent implements OnInit {
   customerName = "José da Silva";
   typedName = "";
 
-  constructor(private logger: NGXLogger, private notificationService: NotificationService,) { }
+  constructor(
+    private logger: NGXLogger,
+    private notificationService: NotificationService,
+    private titleService: Title) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Troca Óleo - Excluir Conta');
     this.typedName = "";
   }
 

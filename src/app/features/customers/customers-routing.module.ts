@@ -1,10 +1,11 @@
 import { RouterModule, Routes } from '@angular/router';
 
+import { CustomerAccountComponent } from './customer-account/customer-account.component';
 import { CustomerRegistrationComponent } from 'src/app/shared/features/customer-registration/customer-registration.component';
 import { DeleteAccountComponent } from './delete-account/delete-account.component';
 import { LayoutComponent } from 'src/app/shared/layout/layout.component';
 import { NgModule } from '@angular/core';
-import { PriceQuoteDetailComponent } from '../../shared/features/price-quote-detail/price-quote-detail.component';
+import { PriceQuoteDetailComponent } from './price-quote-detail/price-quote-detail.component';
 import { PriceQuoteListComponent } from './price-quote-list/price-quote-list.component';
 import { SendPriceQuoteComponent } from './send-price-quote/send-price-quote.component';
 import { ThankYouCustomerComponent } from './thank-you-customer/thank-you-customer.component';
@@ -24,7 +25,7 @@ const routes: Routes = [
       { path: "deleteAccount", component: DeleteAccountComponent },
       { path: "sendPriceQuote", component: SendPriceQuoteComponent },
       { path: "thankYouPriceQuote", component: TyPriceQuoteComponent },
-      { path: "account", component: CustomerRegistrationComponent }
+      { path: "account", component: CustomerAccountComponent }
     ]
   },
   { path: "registration", component: CustomerRegistrationComponent },

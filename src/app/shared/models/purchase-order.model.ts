@@ -8,5 +8,6 @@ export class PurchageOrder {
     public appointmentDateTime?: string,
     public startServiceExecution?: string,
     public endServiceExecution?: string,
+    public status?: string
   ) {}
 }

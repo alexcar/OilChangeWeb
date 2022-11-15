@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-send-price-quote',
@@ -9,10 +10,10 @@ import { Router } from '@angular/router';
 })
 export class SendPriceQuoteComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private titleService: Title) { }
 
   ngOnInit(): void {
-    const foo = "foo";
+    this.titleService.setTitle('Troca Óleo - Cotação de Preço');
   }
 
   sendPriceQuote(): void {

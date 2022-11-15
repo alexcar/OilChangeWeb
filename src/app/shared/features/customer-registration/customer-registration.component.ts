@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 // TODO: Quando a url tiver a palavra detail, significa que não é
 // um registro de cliente, e sim a manutenção de um cliente.
@@ -14,10 +15,10 @@ import { Router } from '@angular/router';
 })
 export class CustomerRegistrationComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private titleService: Title) { }
 
   ngOnInit(): void {
-    const foo = "foo";
+    this.titleService.setTitle('Troca Óleo - Cadastro');
   }
 
   createCustomer(): void {

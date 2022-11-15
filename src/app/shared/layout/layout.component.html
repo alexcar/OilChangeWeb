@@ -7,7 +7,7 @@
       <mat-icon>menu</mat-icon>
     </button>
 
-    <a class="navbar-brand" [routerLink]="['/']" matTooltip="Home">
+    <a class="navbar-brand" matTooltip="A troca de óleo inteligente">
       <h1>
         Troca Óleo
       </h1>
@@ -30,7 +30,11 @@
     </mat-menu> -->
 
     <button mat-button [matMenuTriggerFor]="userMenu">
-      <mat-icon>person</mat-icon>
+      <mat-icon>
+        <span class="material-symbols-outlined">
+          person
+        </span>
+      </mat-icon>
       <span fxShow fxHide.xs>
         {{userName}}
       </span>
@@ -43,7 +47,11 @@
       </a> -->
 
       <a mat-menu-item [routerLink]="['/auth/login']">
-        <mat-icon>exit_to_app</mat-icon>
+        <mat-icon>
+          <span class="material-symbols-outlined">
+            logout
+          </span>
+        </mat-icon>
         <span>Log out</span>
       </a>
 
@@ -63,46 +71,64 @@
 
         <a *ngIf="!isAdmin" mat-list-item [routerLink]="['/customers']" routerLinkActive="active">
           <mat-icon mat-list-icon>
-            dashboard
+            <span class="material-symbols-outlined">
+              payments
+            </span>
           </mat-icon>
           <p mat-line> Cotações de Preço </p>
         </a>
 
         <a *ngIf="!isAdmin" mat-list-item [routerLink]="['/customers/vehicleList']">
           <mat-icon mat-list-icon>
-            business
+            <span class="material-symbols-sharp">
+              car_repair
+            </span>
           </mat-icon>
           <p mat-line> Veículos </p>
         </a>
 
         <a *ngIf="!isAdmin" mat-list-item [routerLink]="['/customers/account']">
-          <mat-icon mat-list-icon>person</mat-icon>
+          <mat-icon mat-list-icon>
+            <span class="material-symbols-outlined">
+              person
+            </span>
+          </mat-icon>
           <p mat-line> Minha conta </p>
         </a>
 
         <a *ngIf="!isAdmin" mat-list-item [routerLink]="['/customers/deleteAccount']">
           <mat-icon mat-list-icon>
-            people
+            <span class="material-symbols-outlined">
+              person_remove
+            </span>
           </mat-icon>
-          <p mat-line> Excluir minha conta </p>
+          <p mat-line> Excluir conta </p>
         </a>
 
         <a *ngIf="isAdmin" mat-list-item [routerLink]="['/company']" routerLinkActive="active">
           <mat-icon mat-list-icon>
-            dashboard
+            <span class="material-symbols-outlined">
+              payments
+            </span>
           </mat-icon>
           <p mat-line> Pedidos </p>
         </a>
 
         <a *ngIf="isAdmin" mat-list-item [routerLink]="['/company/customers']">
           <mat-icon mat-list-icon>
-            people
+            <span class="material-symbols-outlined">
+              group
+            </span>
           </mat-icon>
           <p mat-line> Clientes </p>
         </a>
 
         <a mat-list-item [routerLink]="['/auth/login']">
-          <mat-icon mat-list-icon>exit_to_app</mat-icon>
+          <mat-icon mat-list-icon>
+            <span class="material-symbols-outlined">
+              logout
+            </span>
+          </mat-icon>
           <p mat-line> Log out </p>
         </a>
 
@@ -132,7 +158,9 @@
 
         <a id="push-bottom" mat-list-item [routerLink]="['/about']" routerLinkActive="active">
           <mat-icon mat-list-icon>
-            info_outline
+            <span class="material-symbols-outlined">
+              info
+            </span>
           </mat-icon>
           <p mat-line> Sobre </p>
         </a>

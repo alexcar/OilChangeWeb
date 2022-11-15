@@ -12,6 +12,8 @@ import { VehicleComponent } from './vehicle/vehicle.component';
 import { DeleteAccountComponent } from './delete-account/delete-account.component';
 import { SendPriceQuoteComponent } from './send-price-quote/send-price-quote.component';
 import { TyPriceQuoteComponent } from './ty-price-quote/ty-price-quote.component';
+import { CustomerAccountComponent } from './customer-account/customer-account.component';
+import { PriceQuoteDetailComponent } from './price-quote-detail/price-quote-detail.component';
 
 @NgModule({
     imports: [
@@ -27,7 +29,9 @@ import { TyPriceQuoteComponent } from './ty-price-quote/ty-price-quote.component
         VehicleComponent,
         DeleteAccountComponent,
         SendPriceQuoteComponent,
-        TyPriceQuoteComponent
+        TyPriceQuoteComponent,
+        CustomerAccountComponent,
+        PriceQuoteDetailComponent
     ],
     providers: [
       { provide: MatPaginatorIntl, useClass: PtBrMatPaginatorIntl }

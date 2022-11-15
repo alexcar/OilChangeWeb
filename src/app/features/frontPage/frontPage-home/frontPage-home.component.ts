@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Title } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-frontpage-home',
   templateUrl: './frontPage-home.component.html',
@@ -7,10 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FrontPageHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private titleService: Title) { }
 
   ngOnInit() {
-    const foo = true;
+    this.titleService.setTitle('Troca Óleo');
   }
 
 }

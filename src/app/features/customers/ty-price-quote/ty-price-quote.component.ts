@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Title } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-ty-price-quote',
   templateUrl: './ty-price-quote.component.html',
@@ -7,10 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TyPriceQuoteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private titleService: Title) { }
 
   ngOnInit(): void {
-    const foo = "foo";
+    this.titleService.setTitle('Troca Óleo - Cotação de Preço');
   }
 
 }

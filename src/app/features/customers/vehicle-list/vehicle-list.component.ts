@@ -37,7 +37,7 @@ export class VehicleListComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle('angular-material-template - Customers');
+    this.titleService.setTitle('Troca Óleo - Veículos');
     this.logger.log('Lista de veículos carregada');
     this.notificationService.openSnackBar('Lista de veículos carregada');
   }

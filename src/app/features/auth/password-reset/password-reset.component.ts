@@ -1,9 +1,10 @@
-import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-password-reset',
@@ -25,7 +26,7 @@ export class PasswordResetComponent implements OnInit {
     private notificationService: NotificationService,
     private titleService: Title) {
 
-    this.titleService.setTitle('angular-material-template - Password Reset');
+    this.titleService.setTitle('Troca Óleo - Mudar Senha');
     this.hideNewPassword = true;
     this.hideNewPasswordConfirm = true;
   }

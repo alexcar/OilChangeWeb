@@ -1,10 +1,10 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
-import { NotificationService } from 'src/app/core/services/notification.service';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
+import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-password-reset-request',
@@ -23,7 +23,7 @@ export class PasswordResetRequestComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.titleService.setTitle('angular-material-template - Password Reset Request');
+    this.titleService.setTitle('Troca Óleo - Mudar Senha');
 
     this.form = new UntypedFormGroup({
       email: new UntypedFormControl('', [Validators.required, Validators.email])

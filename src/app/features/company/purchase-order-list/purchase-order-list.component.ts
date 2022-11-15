@@ -10,9 +10,9 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
 const ELEMENT_DATA: PurchageOrder[] = [
-  { id: 1, customerName: "Cliente I", licencePlate: "SO-5180", vehicleModel: "Fusca", appointmentDateTime: "15/10/2022 09:00", startServiceExecution: "09:00", endServiceExecution: "10:45" },
-  { id: 2, customerName: "Cliente II", licencePlate: "FMS-9686", vehicleModel: "Ford KA", appointmentDateTime: "15/10/2022 09:00", startServiceExecution: "", endServiceExecution: "" },
-  { id: 3, customerName: "Cliente III", licencePlate: "SO-5180", vehicleModel: "Fusca", appointmentDateTime: "15/10/2022 09:00", startServiceExecution: "", endServiceExecution: "" }
+  { id: 1, customerName: "Cliente I", licencePlate: "SO-5180", vehicleModel: "Fusca", appointmentDateTime: "15/10/2022 09:00", startServiceExecution: "09:00", endServiceExecution: "10:45", status: "Enviada" },
+  { id: 2, customerName: "Cliente II", licencePlate: "FMS-9686", vehicleModel: "Ford KA", appointmentDateTime: "15/10/2022 09:00", startServiceExecution: "", endServiceExecution: "", status: "Respondida"  },
+  { id: 3, customerName: "Cliente III", licencePlate: "SO-5180", vehicleModel: "Fusca", appointmentDateTime: "15/10/2022 09:00", startServiceExecution: "", endServiceExecution: "", status: "Agendamento"  }
 ]
 
 @Component({
@@ -21,7 +21,7 @@ const ELEMENT_DATA: PurchageOrder[] = [
   styleUrls: ['./purchase-order-list.component.css']
 })
 export class PurchaseOrderListComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['customerName', 'licencePlate', 'vehicleModel', 'appointmentDateTime', 'startServiceExecution', 'endServiceExecution', 'detalhes'];
+  displayedColumns: string[] = ['customerName', 'licencePlate', 'vehicleModel', 'appointmentDateTime', 'startServiceExecution', 'endServiceExecution', 'status', 'detalhes'];
   dataSource = new MatTableDataSource<PurchageOrder>(ELEMENT_DATA);
 
   @ViewChild(MatSort, { static: true })
@@ -34,7 +34,7 @@ export class PurchaseOrderListComponent implements OnInit, AfterViewInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Troca Óleo - Pedido de Compra');
+    this.titleService.setTitle('Troca Óleo - Pedidos de Compra');
     this.logger.log('Pedidos de compra carregado');
     this.notificationService.openSnackBar('Pedidos de compra carregado');
   }
