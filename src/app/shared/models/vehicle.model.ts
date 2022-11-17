@@ -1,8 +1,10 @@
+import { subscriptionLogsToBeFn } from "rxjs/internal/testing/TestScheduler";
+
 export class Vehicle {
 
   constructor(
-    public id?: number,
-    public name?: string,
+    public id?: string,
+    public customerId?: string,
     public licencePlate?: string,
     public modelId?: number,
     public model?: string,

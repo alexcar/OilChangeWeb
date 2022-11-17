@@ -48,7 +48,7 @@ export class AuthenticationService {
         // return JSON.parse(this.localStorage.getItem('currentUser'));
         return {
             token: 'aisdnaksjdn,axmnczm',
-            isAdmin: false,
+            isAdmin: true,
             email: 'john.doe@gmail.com',
             id: '12312323232',
             alias: 'john.doe@gmail.com'.split('@')[0],

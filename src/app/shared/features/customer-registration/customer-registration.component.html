@@ -14,146 +14,146 @@
       experimente os novos benefícios.
     </mat-card-subtitle>
     <mat-card-content>
-      <div fxLayout="row" fxLayoutGap="10">
-        <div fxFlex="50%">
-          <mat-form-field class="mat-form-field-100" appearance="fill">
-            <mat-label>* Nome</mat-label>
-            <input matInput>
-          </mat-form-field>
+      <form [formGroup]="customerRegistrationForm" (ngSubmit)="submitForm()" novalidate>
+        <div fxLayout="row" fxLayoutGap="10">
+          <div fxFlex="50%">
+            <mat-form-field class="mat-form-field-100" appearance="fill">
+              <mat-label>Nome</mat-label>
+              <input matInput formControlName="name">
+              <mat-error *ngIf="errorHandling('name', 'required')">
+                O campo <strong>Nome</strong> é obrigatório.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%">
+            <mat-form-field class="mat-form-field-50" appearance="fill">
+              <mat-label>CPF</mat-label>
+              <input matInput formControlName="cpf">
+            </mat-form-field>
+          </div>
         </div>
-        <div fxFlex="50%">
-          <mat-form-field class="mat-form-field-50" appearance="fill">
-            <mat-label>* CPF</mat-label>
-            <input matInput>
-          </mat-form-field>
+        <div fxLayout="row" fxLayoutGap="10">
+          <div fxFlex="50%">
+            <mat-form-field class="mat-form-field-50" appearance="fill">
+              <mat-label>Sexo</mat-label>
+              <mat-select formControlName="gender">
+                <mat-option *ngFor="let item of genders" [value]="item.id">{{ item.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%">
+            <mat-form-field class="mat-form-field-20 margin-10" appearance="fill">
+              <mat-label>DDD</mat-label>
+              <input matInput formControlName="ddd">
+            </mat-form-field>
+            <mat-form-field class="mat-form-field-30" appearance="fill">
+              <mat-label>* Telefone</mat-label>
+              <input matInput formControlName="phone">
+            </mat-form-field>
+          </div>
         </div>
-      </div>
-      <div fxLayout="row" fxLayoutGap="10">
-        <div fxFlex="50%">
-          <mat-form-field class="mat-form-field-50" appearance="fill">
-            <mat-label>Sexo</mat-label>
-            <mat-select>
-              <mat-option value="one">Masculino</mat-option>
-              <mat-option value="two">Feminino</mat-option>
-            </mat-select>
-          </mat-form-field>
+        <div fxLayout="row" fxLayoutGap="10">
+          <div fxFlex="50%">
+            <mat-form-field class="mat-form-field-100" appearance="fill">
+              <mat-label>E-mail</mat-label>
+              <input matInput formControlName="email">
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%">
+            <mat-form-field class="mat-form-field-50" appearance="fill">
+              <mat-label>Senha</mat-label>
+              <input type="password" matInput formControlName="password">
+            </mat-form-field>
+          </div>
         </div>
-        <div fxFlex="50%">
-          <mat-form-field class="mat-form-field-20 margin-10" appearance="fill">
-            <mat-label>* DDD</mat-label>
-            <input matInput>
-          </mat-form-field>
-          <mat-form-field class="mat-form-field-30" appearance="fill">
-            <mat-label>* Telefone</mat-label>
-            <input matInput>
-          </mat-form-field>
+        <div fxLayout="row" fxLayoutGap="10">
+          <div fxFlex="100%">
+            <mat-form-field class="mat-form-field-100" appearance="fill">
+              <mat-label>Endereço</mat-label>
+              <input matInput formControlName="address">
+            </mat-form-field>
+          </div>
         </div>
-      </div>
-      <div fxLayout="row" fxLayoutGap="10">
-        <div fxFlex="50%">
-          <mat-form-field class="mat-form-field-100" appearance="fill">
-            <mat-label>* E-mail</mat-label>
-            <input matInput>
-          </mat-form-field>
+        <div fxLayout="row" fxLayoutGap="10">
+          <div fxFlex="50%">
+            <mat-form-field class="mat-form-field-100" appearance="fill">
+              <mat-label>Complemento</mat-label>
+              <input matInput formControlName="complement">
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%">
+            <mat-form-field class="mat-form-field-100" appearance="fill">
+              <mat-label>Bairro</mat-label>
+              <input matInput formControlName="neighborhood">
+            </mat-form-field>
+          </div>
         </div>
-        <div fxFlex="50%">
-          <mat-form-field class="mat-form-field-50" appearance="fill">
-            <mat-label>* Senha</mat-label>
-            <input type="password" matInput>
-          </mat-form-field>
+        <div fxLayout="row" fxLayoutGap="10">
+          <div fxFlex="50%">
+            <mat-form-field class="mat-form-field-100" appearance="fill">
+              <mat-label>Município</mat-label>
+              <input matInput formControlName="county">
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%">
+            <mat-form-field class="mat-form-field-20 margin-10" appearance="fill">
+              <mat-label>UF</mat-label>
+              <input matInput formControlName="uf">
+            </mat-form-field>
+            <mat-form-field class="mat-form-field-30" appearance="fill">
+              <mat-label>CEP</mat-label>
+              <input matInput formControlName="zipCode">
+            </mat-form-field>
+          </div>
         </div>
-      </div>
-      <div fxLayout="row" fxLayoutGap="10">
-        <div fxFlex="100%">
-          <mat-form-field class="mat-form-field-100" appearance="fill">
-            <mat-label>* Endereço</mat-label>
-            <input matInput>
-          </mat-form-field>
-        </div>
-      </div>
-      <div fxLayout="row" fxLayoutGap="10">
-        <div fxFlex="50%">
-          <mat-form-field class="mat-form-field-100" appearance="fill">
-            <mat-label>Complemento</mat-label>
-            <input matInput>
-          </mat-form-field>
-        </div>
-        <div fxFlex="50%">
-          <mat-form-field class="mat-form-field-100" appearance="fill">
-            <mat-label>* Bairro</mat-label>
-            <input matInput>
-          </mat-form-field>
-        </div>
-      </div>
-      <div fxLayout="row" fxLayoutGap="10">
-        <div fxFlex="50%">
-          <mat-form-field class="mat-form-field-100" appearance="fill">
-            <mat-label>* Município</mat-label>
-            <input matInput>
-          </mat-form-field>
-        </div>
-        <div fxFlex="50%">
-          <mat-form-field class="mat-form-field-20 margin-10" appearance="fill">
-            <mat-label>* UF</mat-label>
-            <input matInput>
-          </mat-form-field>
-          <mat-form-field class="mat-form-field-30" appearance="fill">
-            <mat-label>* CEP</mat-label>
-            <input matInput>
-          </mat-form-field>
-        </div>
-      </div>
-      <div fxLayout="row">
-        <mat-card>
-          <mat-card-title>Veículo</mat-card-title>
-          <mat-card-subtitle>
-            Cadastre o seu veículo. Após a aprovação do seu cadastro, você terá a oportunidade
-            de cadastrar outros veículos.
-          </mat-card-subtitle>
-          <mat-card-content>
-            <div fxLayout="row" fxLayoutGap="10">
-              <div fxFlex="50%">
-                <mat-form-field class="mat-form-field-50" appearance="fill">
-                  <mat-label>Marca</mat-label>
-                  <mat-select>
-                    <mat-option value="one">Masculino</mat-option>
-                    <mat-option value="two">Feminino</mat-option>
-                  </mat-select>
-                </mat-form-field>
+        <div fxLayout="row">
+          <mat-card>
+            <mat-card-title>Veículo</mat-card-title>
+            <mat-card-subtitle>
+              Cadastre o seu veículo. Após a aprovação do seu cadastro, você terá a oportunidade
+              de cadastrar outros veículos.
+            </mat-card-subtitle>
+            <mat-card-content>
+              <div fxLayout="row" fxLayoutGap="10">
+                <div fxFlex="50%">
+                  <mat-form-field class="mat-form-field-50" appearance="fill">
+                    <mat-label>Marca</mat-label>
+                    <mat-select formControlName="brand">
+                      <mat-option *ngFor="let item of vehicleBrands" [value]="item.id">{{ item.name }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="50%">
+                  <mat-form-field class="mat-form-field-50" appearance="fill">
+                    <mat-label>Modelo</mat-label>
+                    <mat-select formControlName="model">
+                      <mat-option *ngFor="let item of vehicleModels" [value]="item.id" >{{ item.name }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
               </div>
-              <div fxFlex="50%">
-                <mat-form-field class="mat-form-field-50" appearance="fill">
-                  <mat-label>Modelo</mat-label>
-                  <mat-select>
-                    <mat-option value="one">Masculino</mat-option>
-                    <mat-option value="two">Feminino</mat-option>
-                  </mat-select>
-                </mat-form-field>
+              <div fxLayout="row" fxLayoutGap="10">
+                <div fxFlex="50%">
+                  <mat-form-field class="mat-form-field-50" appearance="fill">
+                    <mat-label>Ano</mat-label>
+                    <mat-select formControlName="year">
+                      <mat-option *ngFor="let item of vehicleYears" [value]="item.id">{{ item.name }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="50%">
+                  <mat-form-field class="mat-form-field-50" appearance="fill">
+                    <mat-label>Combustível</mat-label>
+                    <mat-select formControlName="fuel">
+                      <mat-option *ngFor="let item of vehicleFuels" [value]="item.id">{{ item.name }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
               </div>
-            </div>
-            <div fxLayout="row" fxLayoutGap="10">
-              <div fxFlex="50%">
-                <mat-form-field class="mat-form-field-50" appearance="fill">
-                  <mat-label>Ano</mat-label>
-                  <mat-select>
-                    <mat-option value="one">Masculino</mat-option>
-                    <mat-option value="two">Feminino</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div fxFlex="50%">
-                <mat-form-field class="mat-form-field-50" appearance="fill">
-                  <mat-label>Combustível</mat-label>
-                  <mat-select>
-                    <mat-option value="one">Masculino</mat-option>
-                    <mat-option value="two">Feminino</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </form>
     </mat-card-content>
     <mat-card-actions>
       <div fxlayout="row" fxLayoutAlign="end">
@@ -162,4 +162,3 @@
     </mat-card-actions>
   </mat-card>
 </div>
-

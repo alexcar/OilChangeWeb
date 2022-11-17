@@ -1,8 +1,5 @@
-export class VehicleYear {
-
-  constructor(
-    public id: number,
-    public year: string,
-    public active: boolean
-  ) {}
+export interface VehicleYear {
+  id: string;
+  name: string;
+  active: boolean;
 }

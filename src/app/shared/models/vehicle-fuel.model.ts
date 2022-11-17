@@ -1,7 +1,5 @@
-export class VehicleFuel {
-
-  constructor(
-    public id: number,
-    public active: boolean
-  ) {}
+export interface VehicleFuel {
+  id: string;
+  name: string;
+  active: boolean;
 }

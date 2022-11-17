@@ -10,20 +10,6 @@
 8. `npm install eslint-plugin-import eslint-plugin-jsdoc eslint-plugin-prefer-arrow`
 9. `Update src/styles.css`
 
-## Links
-
----
-<https://github.com/angular/flex-layout>
-<https://material.angular.io/guide/getting-started>
-<https://github.com/angular/components>
-<https://github.com/angular-eslint/angular-eslint>
-<https://www.angularjswiki.com/flexlayout/>
-<https://livrosdomaujor.com.br/>
-<https://www.johnpapa.net/how-i-write-online-articles/>
-<https://realfavicongenerator.net/>
-<https://fonts.google.com/icons>
-<https://tburleson-layouts-demos.firebaseapp.com/#/docs>
-
 ## Rascunho
 
 1. Instalei os pacotes

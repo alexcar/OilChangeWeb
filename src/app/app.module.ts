@@ -6,6 +6,7 @@ import { CoreModule } from './core/core.module';
 import { CustomMaterialModule } from './custom-material/custom-material.module';
 import { LoggerModule } from 'ngx-logger';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { environment } from '../environments/environment';
 
@@ -25,6 +26,7 @@ import { environment } from '../environments/environment';
       level: environment.logLevel,
       serverLogLevel: environment.serverLogLevel
     }),
+    ReactiveFormsModule,
   ],
   bootstrap: [AppComponent]
 })

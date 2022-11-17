@@ -10,9 +10,9 @@ import { Title } from '@angular/platform-browser';
 import { Vehicle } from './../../../shared/models/vehicle.model';
 
 const ELEMENT_DATA: Vehicle[] = [
-  { name: "Fusca", model: "1500", year: "1973", fuel: "Gasolina", licencePlate: "SO-5180", active: true },
-  { name: "Fusca", model: "1500", year: "1973", fuel: "Gasolina", licencePlate: "SO-5180", active: true },
-  { name: "Fusca", model: "1500", year: "1973", fuel: "Gasolina", licencePlate: "SO-5180", active: true }
+  { model: "Fusca 1500", brand: "VW", year: "1973", fuel: "Gasolina", licencePlate: "SO-5180", active: true },
+  { model: "Fusca 1300", brand: "VW", year: "1973", fuel: "Gasolina", licencePlate: "SO-5180", active: true },
+  { model: "Fusca 1600", brand: "VW", year: "1973", fuel: "Gasolina", licencePlate: "SO-5180", active: true }
 ];
 
 @Component({
@@ -22,7 +22,7 @@ const ELEMENT_DATA: Vehicle[] = [
 })
 export class VehicleListComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['name', 'model', 'year', 'fuel', 'licencePlate', 'status', 'detalhes'];
+  displayedColumns: string[] = ['model', 'brand', 'year', 'fuel', 'licencePlate', 'status', 'detalhes'];
   dataSource = new MatTableDataSource<Vehicle>(ELEMENT_DATA);
 
   @ViewChild(MatSort, { static: true })

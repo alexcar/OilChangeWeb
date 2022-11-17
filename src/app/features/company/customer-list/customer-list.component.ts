@@ -1,5 +1,7 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 
+import { CompanyService } from './../company.service';
 import { CustomerList } from 'src/app/shared/models/customer-list';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -20,9 +22,10 @@ const ELEMENT_DATA: CustomerList[] = [
   templateUrl: './customer-list.component.html',
   styleUrls: ['./customer-list.component.css']
 })
-export class CustomerListComponent implements OnInit, AfterViewInit {
+export class CustomerListComponent implements OnInit, AfterViewInit, OnDestroy {
   displayedColumns: string[] = ['name', 'email', 'active', 'details'];
   dataSource = new MatTableDataSource<CustomerList>(ELEMENT_DATA);
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   @ViewChild(MatSort, { static: true })
   sort: MatSort = new MatSort;
@@ -32,13 +35,25 @@ export class CustomerListComponent implements OnInit, AfterViewInit {
     private logger: NGXLogger,
     private notificationService: NotificationService,
     private titleService: Title,
-    private router: Router
+    private router: Router,
+    private service: CompanyService
   ) { }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.titleService.setTitle('Troca Óleo - Clientes');
-    this.logger.log('Lista de clientes carregado');
-    this.notificationService.openSnackBar('Lista de clientes carregado');
+    // this.logger.log('Lista de clientes carregado');
+    // this.notificationService.openSnackBar('Lista de clientes carregado');
+
+    // const companies = this.service.getAll();
+    // console.log(companies);
+    // this.logger.log(companies);
+
+    this.getCompanies();
   }
 
   ngAfterViewInit() {
@@ -57,6 +72,23 @@ export class CustomerListComponent implements OnInit, AfterViewInit {
 
   customerDetail(): void {
     this.router.navigateByUrl("/company/customerDetail");
+  }
+
+  getCompanies(): void {
+    this.service.getAll2()
+      ?.pipe(takeUntil(this.destroy$))
+      ?.subscribe({
+        next: (result) => {
+          console.log(result);
+        },
+        error: (e) => {
+          console.log(e);
+          this.notificationService.openSnackBar("Ocorreu um erro interno. Favor tente novamente.");
+        },
+        complete: () => {
+          this.notificationService.openSnackBar('Lista de clientes carregado');
+        }
+      });
   }
 
 }
