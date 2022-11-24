@@ -1,10 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 
+import { CustomerRegistration } from './../../models/customer-registration.model';
 import { CustomerService } from './../../../features/customers/customer.service';
 import { Gender } from '../../models/gender.model';
+import { NotificationService } from 'src/app/core/services/notification.service';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import  Validation from './../../validators/validation.password';
 import { VehicleBrand } from './../../models/vehicle-brand.model';
 import { VehicleFuel } from './../../models/vehicle-fuel.model';
 import { VehicleModel } from './../../models/vehicle-model.model';
@@ -15,23 +19,24 @@ import { VehicleYear } from './../../models/vehicle-year.model';
 // Quando for uma manutenção, precisa desabilitar a visualização de algumas
 // partes da HTML.
 
-// TODO: Visualizar mensagem de erro para os campos obrigatórios.
-// TODO: Preparar formulário para ser enviado para o back-end.
+// TODO: Implementar auto-complete nos campos cpf, email e login para verificar se já existe no back-end.
 
-export interface Subject {
-  name: string;
-}
+// export interface Subject1 {
+//   name: string;
+// }
 
 @Component({
   selector: 'app-customer-registration',
   templateUrl: './customer-registration.component.html',
   styleUrls: ['./customer-registration.component.css']
 })
-export class CustomerRegistrationComponent implements OnInit {
+export class CustomerRegistrationComponent implements OnInit, OnDestroy {
+  destroy$: Subject<boolean> = new Subject<boolean>();
   visible = true;
   selectable = true;
   removable = true;
   addOnBlur = true;
+  submitted = false;
   customerRegistrationForm!: FormGroup;
   @ViewChild('chipList', { static: true }) chipList: any;
   GradeArray: any = [
@@ -40,8 +45,8 @@ export class CustomerRegistrationComponent implements OnInit {
   ];
 
   genders: Gender[] = [
-    { id: "0eb1e341-2f44-405d-a323-92448b23c61c", name: "Masculino" },
-    { id: "137380f5-9077-498d-a4a6-4c7aa5f8939c", name: "Feminino" },
+    { id: "M", name: "Masculino" },
+    { id: "F", name: "Feminino" },
   ];
 
   vehicleBrands: VehicleBrand[] = [
@@ -72,16 +77,21 @@ export class CustomerRegistrationComponent implements OnInit {
     { id: "f67fb0f4-2b74-4e1d-b275-934b2b42880e", name: "Gasolina", active: true },
   ];
 
-  SubjectsArray: Subject[] = [];
-
   constructor(
     public fb: FormBuilder,
     private router: Router,
     private titleService: Title,
-    private service: CustomerService) { }
+    private service: CustomerService,
+    private notificationService: NotificationService,
+    ) { }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 
   ngOnInit(): void {
-    // this.titleService.setTitle('Troca Óleo - Cadastro');
+    this.titleService.setTitle('Troca Óleo - Cadastro');
     this.reactiveForm();
   }
 
@@ -92,32 +102,63 @@ export class CustomerRegistrationComponent implements OnInit {
       gender: ['', [Validators.required]],
       ddd: ['', [Validators.required]],
       phone: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      login: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
       address:['', [Validators.required]],
       complement: [''],
       neighborhood: ['', [Validators.required]],
       county: ['', [Validators.required]],
       uf: ['', [Validators.required]],
       zipCode: ['', [Validators.required]],
-      brand: ['', [Validators.required]],
-      model: ['', [Validators.required]],
-      year: ['', [Validators.required]],
-      fuel: ['', [Validators.required]],
+      licencePlate: ['', Validators.required],
+      brandId: ['', [Validators.required]],
+      modelId: ['', [Validators.required]],
+      yearId: ['', [Validators.required]],
+      fuelId: ['', [Validators.required]],
+    }, {
+      validators: [Validation.match('password', 'confirmPassword')]
     });
   }
 
-  createCustomer(): void {
-    this.router.navigateByUrl("/customers/thankyou");
-    // const foo = this.service.create()
+  onSubmit(): void {
+    this.submitted = true;
+
+    console.log(JSON.stringify(this.customerRegistrationForm.value, null, 2));
+
+    if (this.customerRegistrationForm.invalid) {
+      console.log('invalid');
+      this.notificationService.openSnackBar('Não foi possível realizar o cadastro. Favor tente novamente.');
+      return;
+    }
+
+    let customerRegistration: CustomerRegistration = this.customerRegistrationForm.value;
+
+    this.service.createCustomerRegistration(customerRegistration)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (result) => {
+          this.router.navigateByUrl("/customers/thankyou");
+        },
+        error: (e) => {
+          // TODO: Tratar e gravar o erro no service.
+          const erro = e;
+          this.notificationService.openSnackBar(`Não foi possível realizar o cadastro. ${erro.message}`);
+        },
+        complete: () => {
+        }
+      });
+
+    // console.log(JSON.stringify(this.customerRegistrationForm.value, null, 2));
+    // console.log(customerRegistration);
   }
 
-  submitForm(): void {
-    console.log(this.customerRegistrationForm.value);
+  get f(): { [key: string]: AbstractControl } {
+    return this.customerRegistrationForm.controls;
   }
 
-  errorHandling(foo: any, bar: any): void {
-
+  public errorHandling = (control: string, error: string) => {
+    return this.customerRegistrationForm.controls[control].hasError(error);
   }
-
 }

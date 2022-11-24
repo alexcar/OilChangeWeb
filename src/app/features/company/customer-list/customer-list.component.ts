@@ -52,8 +52,6 @@ export class CustomerListComponent implements OnInit, AfterViewInit, OnDestroy {
     // const companies = this.service.getAll();
     // console.log(companies);
     // this.logger.log(companies);
-
-    this.getCompanies();
   }
 
   ngAfterViewInit() {
@@ -74,21 +72,21 @@ export class CustomerListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.router.navigateByUrl("/company/customerDetail");
   }
 
-  getCompanies(): void {
-    this.service.getAll2()
-      ?.pipe(takeUntil(this.destroy$))
-      ?.subscribe({
-        next: (result) => {
-          console.log(result);
-        },
-        error: (e) => {
-          console.log(e);
-          this.notificationService.openSnackBar("Ocorreu um erro interno. Favor tente novamente.");
-        },
-        complete: () => {
-          this.notificationService.openSnackBar('Lista de clientes carregado');
-        }
-      });
-  }
+  // getCompanies(): void {
+  //   this.service.getAll2()
+  //     ?.pipe(takeUntil(this.destroy$))
+  //     ?.subscribe({
+  //       next: (result) => {
+  //         console.log(result);
+  //       },
+  //       error: (e) => {
+  //         console.log(e);
+  //         this.notificationService.openSnackBar("Ocorreu um erro interno. Favor tente novamente.");
+  //       },
+  //       complete: () => {
+  //         this.notificationService.openSnackBar('Lista de clientes carregado');
+  //       }
+  //     });
+  // }
 
 }

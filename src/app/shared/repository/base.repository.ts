@@ -8,52 +8,52 @@ export abstract class RepositoryBase<T> implements IRepositoryBase<T> {
 
   constructor(protected http: HttpClient, protected route: string) {}
 
-  getAll(headers: HttpHeaders): Observable<T[] | undefined>  {
+  getAll(): Observable<T[] | undefined>  {
     // return this.http.get<T[]>(this.createCompleteRoute(this.route, environment.urlAddress),
     //   {headers: new HttpHeaders(headers)});
 
     const url = this.createCompleteRoute(this.route);
 
-    return this.sendRequest("GET", url, headers);
+    return this.sendRequest("GET", url);
   }
 
-  getById(id: string, headers: HttpHeaders): Observable<T> | undefined {
+  getById(id: string): Observable<T> | undefined {
     // return this.http.get<T>(this.createCompleteRoute(this.route, environment.urlAddress),
     //   {headers: new HttpHeaders(headers)});
 
     const url = this.createCompleteRoute(`${this.route}/${id}`);
 
-    return this.sendRequest("GET", url, headers);
+    return this.sendRequest("GET", url);
   }
 
-  create(entity: T, headers: HttpHeaders): Observable<T> {
+  create(entity: T): Observable<T> {
     // return this.http.post<T>(this.createCompleteRoute(this.route, environment.urlAddress), entity,
     //   {headers: new HttpHeaders(headers)});
 
     const url = this.createCompleteRoute(this.route);
 
-    return this.sendRequest("POST", url, headers, entity);
+    return this.sendRequest("POST", url);
   }
 
-  update(id: string, entity: T, headers: HttpHeaders): Observable<T> {
+  update(id: string, entity: T): Observable<T> {
     // return this.http.put<T>(this.createCompleteRoute(this.route, environment.urlAddress), entity,
     //   {headers: new HttpHeaders(headers)});
 
     const url = this.createCompleteRoute(`${this.route}/${id}`);
 
-    return this.sendRequest("PUT", url, headers, entity);
+    return this.sendRequest("PUT", url);
   }
 
-  delete(id: string, headers: HttpHeaders): Observable<boolean> {
+  delete(id: string): Observable<boolean> {
     // return this.http.delete<boolean>(this.createCompleteRoute(this.route, environment.urlAddress),
     //   {headers: new HttpHeaders(headers)});
 
     const url = this.createCompleteRoute(`${this.route}/${id}`);
 
-    return this.sendRequest("DELETE", url, headers);
+    return this.sendRequest("DELETE", url);
   }
 
-  private createCompleteRoute = (route: string) => {
+  createCompleteRoute = (route: string) => {
     return `${environment.urlAddress}/${route}`;
   }
 
@@ -65,13 +65,15 @@ export abstract class RepositoryBase<T> implements IRepositoryBase<T> {
       errorMessage = `Error: ${error.error.message}`;
     } else {
       // Server-side errors
-      errorMessage = `Error Code: ${error.status} Message: ${error.message}`;
+      errorMessage = `Error Code: ${error.status} Message: ${error.error.Message}`;
     }
+
+    console.log(errorMessage);
 
     return throwError(() => new Error(errorMessage))
   }
 
-  private sendRequest<T>(verb: string, url: string, myHeaders: HttpHeaders, body?: T) : Observable<T> {
+  sendRequest<T>(verb: string, url: string, body?: T) : Observable<any> {
     // let myHeaders = new HttpHeaders();
     // myHeaders = myHeaders.set("Access-Key", "<secret>");
     // myHeaders = myHeaders.set("Application-Names", ["exampleApp", "proAngular"]);
@@ -83,9 +85,13 @@ export abstract class RepositoryBase<T> implements IRepositoryBase<T> {
     //   throw(`Network Error: ${error.statusText} (${error.status})`)
     // }));
 
+    // return this.http.request<T>(verb, url, {
+    //   body: body,
+    //   headers: myHeaders
+    // }).pipe(catchError(this.handleError));
+
     return this.http.request<T>(verb, url, {
-      body: body,
-      headers: myHeaders
-    }).pipe(retry(3), catchError(this.handleError));
+      body: body
+    }).pipe(catchError(this.handleError));
   }
 }

@@ -29,37 +29,72 @@ export class LoginComponent implements OnInit {
     }
 
     private createForm() {
-        const savedUserEmail = localStorage.getItem('savedUserEmail');
-
         this.loginForm = new UntypedFormGroup({
-            email: new UntypedFormControl(savedUserEmail, [Validators.required, Validators.email]),
-            password: new UntypedFormControl('', Validators.required),
-            rememberMe: new UntypedFormControl(savedUserEmail !== null)
+            // email: new UntypedFormControl('', [Validators.required, Validators.email]),
+            login: new UntypedFormControl('', Validators.required),
+            password: new UntypedFormControl('', Validators.required)
         });
     }
 
-    login() {
-        const email = this.loginForm.get('email')?.value;
+    // login() {
+    //     const email = this.loginForm.get('email')?.value;
+    //     const login = this.loginForm.get('login')?.value;
+    //     const password = this.loginForm.get('password')?.value;
+    //     const rememberMe = this.loginForm.get('rememberMe')?.value;
+
+    //     // console.log("login: ", login);
+    //     // console.log("password: ", password);
+
+    //     this.loading = true;
+    //     this.authenticationService
+    //         .login(login.toLowerCase(), password)
+    //         .subscribe(
+    //             data => {
+    //                 if (rememberMe) {
+    //                     localStorage.setItem('savedUserEmail', email);
+    //                 } else {
+    //                     localStorage.removeItem('savedUserEmail');
+    //                 }
+    //                 this.router.navigate(['/']);
+    //             },
+    //             error => {
+    //                 this.notificationService.openSnackBar(error.error);
+    //                 this.loading = false;
+    //             }
+    //         );
+    // }
+
+    login(): void {
+        const login = this.loginForm.get('login')?.value;
         const password = this.loginForm.get('password')?.value;
-        const rememberMe = this.loginForm.get('rememberMe')?.value;
 
         this.loading = true;
         this.authenticationService
-            .login(email.toLowerCase(), password)
-            .subscribe(
-                data => {
-                    if (rememberMe) {
-                        localStorage.setItem('savedUserEmail', email);
-                    } else {
-                        localStorage.removeItem('savedUserEmail');
-                    }
-                    this.router.navigate(['/']);
-                },
-                error => {
-                    this.notificationService.openSnackBar(error.error);
-                    this.loading = false;
+            .login(login.toLowerCase(), password)
+            .subscribe({
+              next: (result) => {
+                localStorage.setItem("currentUser", JSON.stringify({
+                  id: result.id,
+                  firstName: result.firstName,
+                  lastName: result.lastName,
+                  email: result.email,
+                  accessToken: result.accessToken,
+                  refreshToken: result.refreshToken,
+                  isAdmin: result.isAdmin
+                }));
+
+                if (result.isAdmin) {
+                  this.router.navigate(['/company']);
+                } else {
+                  this.router.navigate(['/customers']);
                 }
-            );
+              },
+              error: (e) => {
+                // this.notificationService.openSnackBar(e.message);
+                this.notificationService.openSnackBar("Usuário não encontrado.");
+                this.loading = false;
+              }
+            });
     }
 
     resetPassword() {

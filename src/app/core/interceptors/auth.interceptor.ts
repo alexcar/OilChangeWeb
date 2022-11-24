@@ -1,15 +1,15 @@
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
-import { HttpRequest } from '@angular/common/http';
-import { HttpHandler } from '@angular/common/http';
-import { HttpEvent } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { HttpErrorResponse, HttpInterceptor } from '@angular/common/http';
 
 import { AuthenticationService } from '../services/auth.service';
+import { HttpEvent } from '@angular/common/http';
+import { HttpHandler } from '@angular/common/http';
+import { HttpRequest } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
- 
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
+
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
@@ -21,11 +21,11 @@ export class AuthInterceptor implements HttpInterceptor {
 
         const user = this.authService.getCurrentUser();
 
-        if (user && user.token) {
+        if (user && user.accessToken) {
 
             const cloned = req.clone({
                 headers: req.headers.set('Authorization',
-                    'Bearer ' + user.token)
+                    'Bearer ' + user.accessToken)
             });
 
             return next.handle(cloned).pipe(tap(() => { }, (err: any) => {

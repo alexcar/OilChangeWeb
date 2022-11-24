@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 
+import { CustomerService } from './../customer.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -78,13 +79,20 @@ export class PriceQuoteListComponent implements OnInit, AfterViewInit {
     private logger: NGXLogger,
     private notificationService: NotificationService,
     private titleService: Title,
-    private router: Router
+    private router: Router,
+    private service: CustomerService
   ) { }
 
   ngOnInit(): void {
     this.titleService.setTitle('Troca Óleo - Cotações de Preço');
     this.logger.log('Cotações de preço carregada');
     this.notificationService.openSnackBar('Lista de cotações de preço carregada');
+    this.getAllCustomer();
+  }
+
+  getAllCustomer() {
+    const customers = this.service.getAll();
+    console.log("customers: ", customers);
   }
 
   ngAfterViewInit() {

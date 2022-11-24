@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 
+import { CompanyService } from '../company.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -11,8 +12,8 @@ import { Title } from '@angular/platform-browser';
 
 const ELEMENT_DATA: PurchageOrder[] = [
   { id: 1, customerName: "Cliente I", licencePlate: "SO-5180", vehicleModel: "Fusca", appointmentDateTime: "15/10/2022 09:00", startServiceExecution: "09:00", endServiceExecution: "10:45", status: "Enviada" },
-  { id: 2, customerName: "Cliente II", licencePlate: "FMS-9686", vehicleModel: "Ford KA", appointmentDateTime: "15/10/2022 09:00", startServiceExecution: "", endServiceExecution: "", status: "Respondida"  },
-  { id: 3, customerName: "Cliente III", licencePlate: "SO-5180", vehicleModel: "Fusca", appointmentDateTime: "15/10/2022 09:00", startServiceExecution: "", endServiceExecution: "", status: "Agendamento"  }
+  { id: 2, customerName: "Cliente II", licencePlate: "FMS-9686", vehicleModel: "Ford KA", appointmentDateTime: "15/10/2022 09:00", startServiceExecution: "", endServiceExecution: "", status: "Respondida" },
+  { id: 3, customerName: "Cliente III", licencePlate: "SO-5180", vehicleModel: "Fusca", appointmentDateTime: "15/10/2022 09:00", startServiceExecution: "", endServiceExecution: "", status: "Agendamento" }
 ]
 
 @Component({
@@ -31,7 +32,8 @@ export class PurchaseOrderListComponent implements OnInit, AfterViewInit {
   constructor(private logger: NGXLogger,
     private notificationService: NotificationService,
     private titleService: Title,
-    private router: Router) { }
+    private router: Router,
+    private service: CompanyService) { }
 
   ngOnInit(): void {
     this.titleService.setTitle('Troca Óleo - Pedidos de Compra');
@@ -52,5 +54,4 @@ export class PurchaseOrderListComponent implements OnInit, AfterViewInit {
   purchaseOrderDetail(): void {
     this.router.navigateByUrl("/company/purchaseOrderDetail");
   }
-
 }

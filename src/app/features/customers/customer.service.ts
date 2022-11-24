@@ -2,14 +2,18 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 
 import { Customer } from './../../shared/models/customer.model';
+import { CustomerRegistration } from './../../shared/models/customer-registration.model';
 import { CustomerRepository } from './customer.repository';
-import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root"
 })
 export class CustomerService implements OnDestroy {
   destroy$: Subject<boolean> = new Subject<boolean>();
+
+  // TODO: Gravar log de erro aqui no service
 
   constructor(private repository: CustomerRepository) {}
 
@@ -22,7 +26,7 @@ export class CustomerService implements OnDestroy {
     //     customers = result;
     //   });
 
-    this.repository.getAll(this.getMyHeaders())
+    this.repository.getAll()
       ?.pipe(takeUntil(this.destroy$))
       ?.subscribe({
         next: (result) => {
@@ -42,7 +46,7 @@ export class CustomerService implements OnDestroy {
   getById(id: string): Customer | undefined {
     let customer: Customer | undefined;
 
-    this.repository.getById(id, this.getMyHeaders())
+    this.repository.getById(id)
       ?.pipe(takeUntil(this.destroy$))
       ?.subscribe(result => {
         customer = result;
@@ -54,7 +58,7 @@ export class CustomerService implements OnDestroy {
   create(entity: Customer): Customer {
     let customer!: Customer;
 
-    this.repository.create(entity, this.getMyHeaders())
+    this.repository.create(entity)
       .pipe(takeUntil(this.destroy$))
       .subscribe(result => {
         customer = result;
@@ -63,12 +67,20 @@ export class CustomerService implements OnDestroy {
     return customer;
   }
 
+  createCustomerRegistration(entity: CustomerRegistration): Observable<CustomerRegistration> {
+    entity.country = "BR";
+    entity.active = true;
+    entity.userUpdate = environment.userUpdate;
+
+    return this.repository.createCustomerRegistration(entity);
+  }
+
   update(id: string, entity: Customer): Customer {
     // TODO: Tratamento de erro caso o customer não seja encontrado.
 
     let newCustomer!: Customer;
 
-    this.repository.getById(id, this.getMyHeaders())
+    this.repository.getById(id)
       ?.pipe(takeUntil(this.destroy$))
       ?.subscribe(result => {
       if (result != undefined) {
@@ -87,7 +99,7 @@ export class CustomerService implements OnDestroy {
         customer.zipCode = entity.zipCode;
         customer.active = entity.active;
 
-        this.repository.update(id, customer, this.getMyHeaders())
+        this.repository.update(id, customer)
         .pipe(takeUntil(this.destroy$))
           .subscribe(result => {
             newCustomer = result;
@@ -101,21 +113,13 @@ export class CustomerService implements OnDestroy {
   delete(id: string): boolean {
     let isDeleted!: boolean;
 
-    this.repository.delete(id, this.getMyHeaders())
+    this.repository.delete(id)
       .pipe(takeUntil(this.destroy$))
       .subscribe(result => {
         isDeleted = result;
       });
 
     return isDeleted;
-  }
-
-  private getMyHeaders(): HttpHeaders {
-    let myHeaders = new HttpHeaders();
-    myHeaders = myHeaders.set("Access-Key", "<secret>");
-    myHeaders = myHeaders.set("Application-Names", ["exampleApp", "proAngular"]);
-
-    return myHeaders;
   }
 
   ngOnDestroy(): void {

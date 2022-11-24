@@ -1,9 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 
 import { Company } from 'src/app/shared/models/company.model';
 import { CompanyRepository } from './company.repository';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class CompanyService implements OnDestroy {
   getAll(): Company[] | undefined {
     let companies: Company[] | undefined;
 
-    this.repository.getAll(this.getMyHeaders())
+    this.repository.getAll()
       ?.pipe(takeUntil(this.destroy$))
       ?.subscribe({
         next: (result) => {
@@ -35,17 +35,9 @@ export class CompanyService implements OnDestroy {
     return companies;
   }
 
-  getAll2(): Observable<Company[] | undefined> {
-    return this.repository.getAll(this.getMyHeaders());
-  }
-
-  private getMyHeaders(): HttpHeaders {
-    let myHeaders = new HttpHeaders();
-    myHeaders = myHeaders.set("Access-Key", "<secret>");
-    myHeaders = myHeaders.set("Application-Names", ["exampleApp", "proAngular"]);
-
-    return myHeaders;
-  }
+  // getCurrentUser(): any {
+  //   return JSON.parse(localStorage.getItem('currentUser') || '{}');
+  // }
 
   ngOnDestroy(): void {
     this.destroy$.next(true);

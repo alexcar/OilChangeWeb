@@ -7,7 +7,8 @@ export const environment = {
   production: false,
   logLevel: NgxLoggerLevel.TRACE,
   serverLogLevel: NgxLoggerLevel.OFF,
-  urlAddress: "https://localhost:7098/api"
+  urlAddress: "https://localhost:7207/api",
+  userUpdate: "2bdf4dce-b412-48fd-84ff-d3fe32a057af"
 };
 
 /*

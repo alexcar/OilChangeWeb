@@ -46,7 +46,7 @@
         <span>Account</span>
       </a> -->
 
-      <a mat-menu-item [routerLink]="['/auth/login']">
+      <a mat-menu-item (click)="logout()">
         <mat-icon>
           <span class="material-symbols-outlined">
             logout

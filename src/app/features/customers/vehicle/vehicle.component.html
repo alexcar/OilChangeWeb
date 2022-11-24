@@ -5,6 +5,17 @@
       <div fxLayout="row" fxLayoutGap="10">
         <div fxFlex="50%">
           <mat-form-field class="mat-form-field-50" appearance="fill">
+            <mat-label>Placa</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50%" fxLayoutAlign="none center">
+          <mat-checkbox [(ngModel)]="checked" >Ativo</mat-checkbox>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10">
+        <div fxFlex="50%">
+          <mat-form-field class="mat-form-field-50" appearance="fill">
             <mat-label>Marca</mat-label>
             <mat-select>
               <mat-option value="1">VW</mat-option>
@@ -45,17 +56,6 @@
               <mat-option value="4">Diesel</mat-option>
             </mat-select>
           </mat-form-field>
-        </div>
-      </div>
-      <div fxLayout="row" fxLayoutGap="10">
-        <div fxFlex="50%">
-          <mat-form-field class="mat-form-field-50" appearance="fill">
-            <mat-label>Placa</mat-label>
-            <input matInput>
-          </mat-form-field>
-        </div>
-        <div fxFlex="50%" fxLayoutAlign="none center">
-          <mat-checkbox [(ngModel)]="checked" >Ativo</mat-checkbox>
         </div>
       </div>
     </mat-card-content>
