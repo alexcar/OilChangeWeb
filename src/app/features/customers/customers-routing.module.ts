@@ -1,5 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 
+import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { CustomerAccountComponent } from './customer-account/customer-account.component';
 import { CustomerRegistrationComponent } from 'src/app/shared/features/customer-registration/customer-registration.component';
 import { DeleteAccountComponent } from './delete-account/delete-account.component';
@@ -18,14 +19,14 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: '', component: PriceQuoteListComponent },
-      { path: "vehicleList", component: VehicleListComponent },
-      { path: "vehicle", component: VehicleComponent },
-      { path: "priceQuoteDetail", component: PriceQuoteDetailComponent },
-      { path: "deleteAccount", component: DeleteAccountComponent },
-      { path: "sendPriceQuote", component: SendPriceQuoteComponent },
-      { path: "thankYouPriceQuote", component: TyPriceQuoteComponent },
-      { path: "account", component: CustomerAccountComponent }
+      { path: '', component: PriceQuoteListComponent, canActivate: [AuthGuard] },
+      { path: "vehicleList", component: VehicleListComponent, canActivate: [AuthGuard] },
+      { path: "vehicle", component: VehicleComponent, canActivate: [AuthGuard] },
+      { path: "priceQuoteDetail", component: PriceQuoteDetailComponent, canActivate: [AuthGuard] },
+      { path: "deleteAccount", component: DeleteAccountComponent, canActivate: [AuthGuard] },
+      { path: "sendPriceQuote", component: SendPriceQuoteComponent, canActivate: [AuthGuard] },
+      { path: "thankYouPriceQuote", component: TyPriceQuoteComponent, canActivate: [AuthGuard] },
+      { path: "account", component: CustomerAccountComponent, canActivate: [AuthGuard] }
     ]
   },
   { path: "registration", component: CustomerRegistrationComponent },

@@ -9,9 +9,12 @@ const appRoutes: Routes = [
     loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule),
   },
   {
+    // path: '',
+    // loadChildren: () => import('./features/frontPage/frontpage.module').then(m => m.FrontPageModule),
+    // canActivate: [AuthGuard]
+
     path: '',
-    loadChildren: () => import('./features/frontPage/frontpage.module').then(m => m.FrontPageModule),
-    canActivate: [AuthGuard]
+    loadChildren: () => import('./features/frontPage/frontpage.module').then(m => m.FrontPageModule)
   },
   {
     path: 'dashboard',
@@ -19,9 +22,12 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    // path: 'customers',
+    // loadChildren: () => import('./features/customers/customers.module').then(m => m.CustomersModule),
+    // canActivate: [AuthGuard]
+
     path: 'customers',
-    loadChildren: () => import('./features/customers/customers.module').then(m => m.CustomersModule),
-    canActivate: [AuthGuard]
+    loadChildren: () => import('./features/customers/customers.module').then(m => m.CustomersModule)
   },
   {
     path: 'users',

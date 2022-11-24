@@ -9,6 +9,7 @@ import { NotificationService } from 'src/app/core/services/notification.service'
 import { PriceQuote } from 'src/app/shared/models/price-quote.model';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { first } from 'rxjs';
 
 const ELEMENT_DATA: PriceQuote[] =  [
   {
@@ -70,6 +71,7 @@ export class PriceQuoteListComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['number', 'expirationDate', 'serviceName', 'vehicle', 'amount', 'status', 'detalhes'];
   dataSource = new MatTableDataSource<PriceQuote>(ELEMENT_DATA);
+  error = '';
 
   @ViewChild(MatSort, { static: true })
   sort: MatSort = new MatSort;
@@ -91,8 +93,20 @@ export class PriceQuoteListComponent implements OnInit, AfterViewInit {
   }
 
   getAllCustomer() {
-    const customers = this.service.getAll();
-    console.log("customers: ", customers);
+    // const customers = this.service.getAll();
+    // console.log("customers: ", customers);
+    this.service.getAll()
+      .pipe(first())
+      .subscribe({
+        next: (result) => {
+          const customers = result;
+          console.log("customers: ", customers);
+        },
+        error: (error) => {
+          this.error = error;
+          console.log('error: ', error);
+        }
+      })
   }
 
   ngAfterViewInit() {

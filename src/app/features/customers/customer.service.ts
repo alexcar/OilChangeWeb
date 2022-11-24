@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { map, Subject, takeUntil } from 'rxjs';
 
 import { Customer } from './../../shared/models/customer.model';
 import { CustomerRegistration } from './../../shared/models/customer-registration.model';
@@ -17,30 +17,31 @@ export class CustomerService implements OnDestroy {
 
   constructor(private repository: CustomerRepository) {}
 
-  getAll(): Customer[] | undefined {
-    let customers: Customer[] | undefined;
+  // getAll(): Customer[] | undefined {
+  //   let customers: Customer[] | undefined;
 
-    // this.repository.getAll(this.getMyHeaders())
-    //   ?.pipe(takeUntil(this.destroy$))
-    //   ?.subscribe(result => {
-    //     customers = result;
-    //   });
+  //   this.repository.getAll()
+  //     ?.pipe(takeUntil(this.destroy$))
+  //     ?.subscribe({
+  //       next: (result) => {
+  //         customers = result;
+  //       },
+  //       error: (e) => {
+  //         console.log(e);
+  //       },
+  //       complete: () => {
+  //         console.info('complete');
+  //       }
+  //     });
 
-    this.repository.getAll()
-      ?.pipe(takeUntil(this.destroy$))
-      ?.subscribe({
-        next: (result) => {
-          customers = result;
-        },
-        error: (e) => {
-          console.log(e);
-        },
-        complete: () => {
-          console.info('complete');
-        }
-      });
+  //   return customers;
+  // }
 
-    return customers;
+  getAll(): Observable<Customer[] | undefined> {
+    return this.repository.getAll()
+      .pipe(map(customer => {
+        return customer
+      }));
   }
 
   getById(id: string): Customer | undefined {
