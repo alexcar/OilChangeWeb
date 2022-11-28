@@ -17,7 +17,7 @@ export abstract class RepositoryBase<T> implements IRepositoryBase<T> {
     return this.sendRequest("GET", url);
   }
 
-  getById(id: string): Observable<T> | undefined {
+  getById(id: string): Observable<T | undefined> {
     // return this.http.get<T>(this.createCompleteRoute(this.route, environment.urlAddress),
     //   {headers: new HttpHeaders(headers)});
 

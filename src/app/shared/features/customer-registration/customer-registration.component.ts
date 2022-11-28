@@ -41,7 +41,7 @@ export class CustomerRegistrationComponent implements OnInit, OnDestroy {
   @ViewChild('chipList', { static: true }) chipList: any;
   GradeArray: any = [
     '8th Grade',
-    '9th GRade'
+    '9th Grade'
   ];
 
   genders: Gender[] = [
@@ -50,31 +50,28 @@ export class CustomerRegistrationComponent implements OnInit, OnDestroy {
   ];
 
   vehicleBrands: VehicleBrand[] = [
-    { id: "57414a44-7d33-4aff-9cfe-a8638383f74c", name: "Ford", active: true },
-    { id: "e70067fb-27c7-4456-af52-9b8ad0f5599f", name: "VW", active: true },
-    { id: "d04bf95b-7a20-4779-9b45-ac7c194a2537", name: "Fiat", active: true },
+    { id: "DE578D8E-F317-4930-9260-DA0DC324268B", name: "Ford", active: true },
+    { id: "27282F7B-A300-45C4-8B03-A7F5675F4037", name: "VW", active: true },
+    { id: "D61FC229-5321-4A45-913E-17E3085589FA", name: "Fiat", active: true },
   ];
 
   vehicleModels: VehicleModel[] = [
-    { id: "8fb4b710-23bb-4831-af6e-5d2199476a5f", name: "KA", active: true  },
-    { id: "0c8366ee-fdd4-43ca-981f-0085ca233438", name: "Amarok", active: true  },
-    { id: "e56a67ff-167e-4b54-a3b0-43d49eddd963", name: "Toro", active: true  }
+    { id: "510A58AD-125E-4C05-AAD3-4CFF1912915C", name: "KA", active: true  },
+    { id: "010F304D-BCC0-41D3-8ADA-6C494EC7D397", name: "Amarok", active: true  },
+    { id: "4FC54966-675C-47DE-9D0D-01CCA418318A", name: "Toro", active: true  }
   ];
 
   vehicleYears: VehicleYear[] = [
-    { id: "c7619efb-01a1-44ac-a4dd-447cbf9b191d", name: "2017", active: true },
-    { id: "83593598-56dc-44ec-bf9a-34658de4efc6", name: "2018", active: true },
-    { id: "14356049-fa9d-4b38-aa4a-be9730f5c2fd", name: "2019", active: true },
-    { id: "addf70da-6e83-4b87-a443-0880ca949465", name: "2020", active: true },
-    { id: "73d865ab-e943-40dc-8e5d-28a49f5441e1", name: "2021", active: true },
-    { id: "832ae434-0f45-428f-9214-d303c3399654", name: "2022", active: true },
+    { id: "9A1100DA-A00E-40D6-B1F2-B597085EB0E6", name: "2020", active: true },
+    { id: "3DBC655F-E532-4C76-B823-467D683E4050", name: "2021", active: true },
+    { id: "063AC9E5-9A0F-4E1B-916D-B0A60EF389A3", name: "2022", active: true },
   ];
 
   vehicleFuels: VehicleFuel[] = [
-    { id: "79aed849-23ff-4d48-9b27-bbb24f812d32", name: "Álcool", active: true },
-    { id: "b2a79208-7050-4780-b8ec-da60792ed066", name: "Diesel", active: true },
-    { id: "911b6cc2-90e0-478f-b14b-8b971a6340ff", name: "Flex", active: true },
-    { id: "f67fb0f4-2b74-4e1d-b275-934b2b42880e", name: "Gasolina", active: true },
+    { id: "C851AB73-4A54-45D3-B33D-B3C634A4598D", name: "Álcool", active: true },
+    { id: "DB3C1C31-5B57-43CE-8AB9-F6C2D67C8330", name: "Diesel", active: true },
+    { id: "30128B5D-6FD1-43C3-B2D7-BF1D101F8B6D", name: "Flex", active: true },
+    { id: "859B8788-1D05-4FA2-9EE9-2000DF58CE32", name: "Gasolina", active: true },
   ];
 
   constructor(
@@ -141,10 +138,9 @@ export class CustomerRegistrationComponent implements OnInit, OnDestroy {
         next: (result) => {
           this.router.navigateByUrl("/customers/thankyou");
         },
-        error: (e) => {
+        error: (error) => {
           // TODO: Tratar e gravar o erro no service.
-          const erro = e;
-          this.notificationService.openSnackBar(`Não foi possível realizar o cadastro. ${erro.message}`);
+          this.notificationService.openSnackBar(`Não foi possível realizar o cadastro. ${error.message}`);
         },
         complete: () => {
         }

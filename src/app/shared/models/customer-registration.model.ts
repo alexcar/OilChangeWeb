@@ -15,7 +15,6 @@ export interface CustomerRegistration {
   zipCode: string;
   country: string;
   active: boolean;
-  userUpdate: string;
   licencePlate: string;
   brand: string;
   model: string;

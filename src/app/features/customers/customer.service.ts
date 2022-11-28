@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { map, Subject, takeUntil } from 'rxjs';
+import { Subject, map, takeUntil } from 'rxjs';
 
 import { Customer } from './../../shared/models/customer.model';
 import { CustomerRegistration } from './../../shared/models/customer-registration.model';
@@ -44,16 +44,21 @@ export class CustomerService implements OnDestroy {
       }));
   }
 
-  getById(id: string): Customer | undefined {
-    let customer: Customer | undefined;
+  getById(id: string): Observable< Customer | undefined> {
+    // let customer: Customer | undefined;
 
-    this.repository.getById(id)
-      ?.pipe(takeUntil(this.destroy$))
-      ?.subscribe(result => {
-        customer = result;
-      });
+    // this.repository.getById(id)
+    //   ?.pipe(takeUntil(this.destroy$))
+    //   ?.subscribe(result => {
+    //     customer = result;
+    //   });
 
-    return customer;
+    return this.repository.getById(id)
+      ?.pipe(map(response => {
+        return response;
+      }));
+
+    // return customer;
   }
 
   create(entity: Customer): Customer {
@@ -70,10 +75,11 @@ export class CustomerService implements OnDestroy {
 
   createCustomerRegistration(entity: CustomerRegistration): Observable<CustomerRegistration> {
     entity.country = "BR";
-    entity.active = true;
-    entity.userUpdate = environment.userUpdate;
 
-    return this.repository.createCustomerRegistration(entity);
+    return this.repository.createCustomerRegistration(entity)
+      .pipe(map(response => {
+        return response;
+      }));
   }
 
   update(id: string, entity: Customer): Customer {
